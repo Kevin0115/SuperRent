@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var bodyParser = require('body-parser');
+var path = require('path');
+var STATIC_ROOT = path.resolve(__dirname, './public');
 
 // Middleware
 app.use(express.json());
@@ -17,6 +19,7 @@ var customer = require('./routes/customer');
 var HTTP_PORT = 3000;
 
 // Routes
+app.use('/', express.static(STATIC_ROOT));
 app.use('/test', test);
 app.use('/customer', customer);
 
