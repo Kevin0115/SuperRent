@@ -1,10 +1,10 @@
-drop table branch;
-drop table reservation;
+drop table vehicle_return;
 drop table rental;
+drop table reservation;
 drop table vehicle;
 drop table vehicle_type;
 drop table customer;
-drop table vehicle_return;
+drop table branch;
 
 -- this table might not be necessary
 create table branch (
@@ -15,7 +15,7 @@ create table branch (
 
 create table customer (
     dlicense integer not null primary key,
-    cellphone integer not null,
+    cellphone bigint not null,
     customer_name varchar(50) not null,
     customer_address varchar(50) not null
 );
