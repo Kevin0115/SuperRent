@@ -16,7 +16,7 @@ exports.create_customer = (req, res) => {
     res.send({success: true, content: 'Successfully Created Customer'});
   })
   .catch(err => {
-    console.error(err.detail);
+    console.error(err);
     res.send({success: false, content: err.detail});
   })
 }

@@ -22,3 +22,25 @@ export const postSession = () => {
     console.log('Error posting session: ' + error);
   });
 }
+
+export const registerCustomer = async (name, address, phone, license) => {
+  fetch(API_BASE + 'customer', {
+    method: POST,
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "dlicense": license,
+      "cellphone": phone,
+      "name": name,
+      "address": address
+    })
+  })
+  .then(res => res.json())
+  .then(json => {
+    console.log(json);
+  })
+  .catch(function(error) {
+    console.log('Error posting session: ' + error);
+  })
+}

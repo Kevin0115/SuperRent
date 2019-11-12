@@ -1,3 +1,11 @@
+.console {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+}
+
 .tabs {
   background-color: #343a40;
 }
@@ -12,4 +20,9 @@
 
 .nav-link:hover {
   color: #007bff;
+}
+
+.alert {
+  position: fixed;
+  top: 24px;
 }

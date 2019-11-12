@@ -17,6 +17,8 @@ import './Clerk.css';
 
 import { postSession } from '../utils/Utils.js';
 
+import Console from './Console';
+
 class Clerk extends React.Component {
   render() {
     return(
@@ -30,6 +32,9 @@ class Clerk extends React.Component {
           </Tab>
           <Tab eventKey="report" title="Report">
             <h2>TODO</h2>
+          </Tab>
+          <Tab eventKey="console" title="Console">
+            <Console />
           </Tab>
         </Tabs>
       </div>
