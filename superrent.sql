@@ -23,6 +23,7 @@ create table customer (
 create table vehicle_type (
     -- vtname will be something like compact_hybrid or suv_gas
     vtname varchar(20) not null primary key,
+    -- could make features an ARRAY
     features varchar(50) not null,
     w_rate integer not null,
     d_rate integer not null,
@@ -60,7 +61,7 @@ create table reservation (
     foreign key (vtname) references vehicle_type,
     foreign key (dlicense) references customer
     -- foreign key (from_date, from_time, to_date, to_time) references time_period
-;)
+);
 
 create table rental (
     rid integer not null primary key,
@@ -90,3 +91,5 @@ create table vehicle_return (
     tank_value integer not null,
     foreign key (rid) references rental
 );
+
+commit;
