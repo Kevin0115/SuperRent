@@ -16,7 +16,7 @@
 4. Open up a Node terminal (or PowerShell, or UNIX Terminal)
 5. Run `cd SuperRent/web_server`
 6. Run `npm start`
-7. Open `localhost:3000`
+7. Open `http://localhost`
 8. Play around with the website (and try out the existing endpoints, as defined in `SuperRent/routes/`
 
 
@@ -24,4 +24,4 @@
 1. Open up a Node terminal (or PowerShell, or UNIX Terminal)
 2. Run `cd SuperRent/web_client`
 3. Run `npm start`
-7. Open `localhost:3000` *TODO: This port will clash with the server. Change one of them*
+7. Open `http://localhost:3000`

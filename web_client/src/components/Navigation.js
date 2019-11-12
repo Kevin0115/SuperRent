@@ -12,7 +12,11 @@ import {
   Button,
 } from 'react-bootstrap';
 
+import { postSession } from '../utils/Utils.js';
 import './Navigation.css';
+
+import Customer from './Customer';
+import Clerk from './Clerk';
 
 class Navigation extends React.Component {
   render() {
@@ -56,14 +60,6 @@ class Navigation extends React.Component {
   }
 }
 
-function Customer() {
-  return (
-    <div>
-      <h2>Welcome to the Customer Page</h2>
-    </div>
-  );
-}
-
 function Main() {
   return (
     <div className="main">
@@ -84,14 +80,6 @@ function Main() {
       >
         Clerk
       </Button>
-    </div>
-  );
-}
-
-function Clerk() {
-  return (
-    <div>
-      <h2>Welcome to the Clerk Page</h2>
     </div>
   );
 }

@@ -7,6 +7,13 @@ var path = require('path');
 var STATIC_ROOT = path.resolve(__dirname, './public');
 
 // Middleware
+function cors(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS,PUT");
+  next();
+}
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
 app.use(bodyParser.urlencoded({extended: true}))
@@ -16,7 +23,8 @@ var test = require('./routes/test');
 var customer = require('./routes/customer');
 
 // Declare application parameters
-var HTTP_PORT = 3000;
+// Will have to change this if moving to a VM
+var HTTP_PORT = 80;
 
 // Routes
 app.use('/', express.static(STATIC_ROOT));
