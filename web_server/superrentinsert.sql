@@ -111,7 +111,6 @@ insert into vehicle values (681614,'Mercedes-Benz','C-Class',2003,'Pink',347660,
 insert into vehicle values (230612,'Dodge','Dakota Club',1997,'Turquoise',367265,'shop','truck_gas','Midtown','Burnaby');
 insert into vehicle values (802454,'Acura','NSX',1999,'Green',364527,'shop','truck_gas','Midtown','Burnaby');
 
-dlicense,cellphone,'customer_name','customer_address'
 insert into customer values (6442787,9541328538,'Simonette Oleszkiewicz','7 Hazelcrest Court');
 insert into customer values (5151896,9676249844,'Judah Rippen','447 Oakridge Plaza');
 insert into customer values (1833068,1784171243,'Ephraim Anthon','806 Oriole Plaza');
