@@ -6,6 +6,7 @@ drop table vehicle_type;
 drop table customer;
 drop table vehicle_return;
 
+-- this table might not be necessary
 create table branch (
     branch_location varchar(20) not null,
     branch_city varchar(20) not null,
@@ -20,6 +21,7 @@ create table customer (
 );
 
 create table vehicle_type (
+    -- vtname will be something like compact_hybrid or suv_gas
     vtname varchar(20) not null primary key,
     features varchar(50) not null,
     w_rate integer not null,
@@ -40,6 +42,7 @@ create table vehicle (
     odometer integer not null,
     status varchar(20) not null,
     vtname varchar(20) not null,
+    -- branch location and city might not be necessary as foreign keys
     branch_location varchar(20) not null,
     branch_city varchar(20) not null,
     foreign key (branch_location, branch_city) references branch,
