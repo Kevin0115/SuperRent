@@ -52,12 +52,15 @@ create table vehicle (
 
 create table reservation (
     conf_no integer not null primary key,
+    -- I added this to be able to reference which vehicles are reserved
+    vlicense integer not null,
     vtname varchar(20) not null,
     dlicense integer not null,
     from_date date not null,
     from_time time not null,
     to_date date not null,
     to_time time not null,
+    foreign key (vlicense) references vehicle,
     foreign key (vtname) references vehicle_type,
     foreign key (dlicense) references customer
     -- foreign key (from_date, from_time, to_date, to_time) references time_period
@@ -91,5 +94,3 @@ create table vehicle_return (
     tank_value integer not null,
     foreign key (rid) references rental
 );
-
-commit;

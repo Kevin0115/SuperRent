@@ -11,21 +11,24 @@ import DatetimeRangePicker from 'react-datetime-range-picker';
 
 import { formatDate, formatTime } from '../utils/Utils';
 
+const noFilters = {
+  carSize: 'Any',
+  carType: 'Any',
+  location: 'Any',
+  fromDate: formatDate(new Date()),
+  fromTime: formatTime(new Date()),
+  toDate: formatDate(new Date()),
+  toTime: formatTime(new Date()),
+};
+
 class VehicleFilters extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      carSize: 'Any',
-      carType: 'Any',
-      location: 'Any',
-      fromDate: formatDate(new Date()),
-      fromTime: formatTime(new Date()),
-      toDate: formatDate(new Date()),
-      toTime: formatTime(new Date()),
-    }
+    this.state = noFilters;
     this.handleIntervalChange = this.handleIntervalChange.bind(this);
     this.handlePickerChange = this.handlePickerChange.bind(this);
     this.handleApply = this.handleApply.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleIntervalChange(e) {
@@ -43,6 +46,11 @@ class VehicleFilters extends React.Component {
 
   handleApply() {
     this.props.handler(this.state);
+  }
+  
+  handleClear() {
+    this.props.handler(noFilters);
+    this.setState(noFilters);
   }
 
   render() {
@@ -84,6 +92,7 @@ class VehicleFilters extends React.Component {
             <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Any')}>Any</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Downtown Vancouver')}>Downtown Vancouver</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Midtown Burnaby')}>Midtown Burnaby</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown className="dropdown">
@@ -108,6 +117,13 @@ class VehicleFilters extends React.Component {
           onClick={this.handleApply}
         >
           Apply Filters
+        </Button>
+        <Button
+          className="filter-button"
+          variant="outline-danger"
+          onClick={this.handleClear}
+        >
+          Clear Filters
         </Button>
       </div>
     );

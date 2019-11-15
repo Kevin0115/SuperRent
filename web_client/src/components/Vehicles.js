@@ -4,7 +4,8 @@ import {
   Tabs,
   Tab,
   Dropdown,
-  Card
+  Card,
+  Badge
 } from 'react-bootstrap';
 import './Vehicles.css';
 
@@ -30,6 +31,10 @@ class Vehicles extends React.Component {
     }
     this.filterCallback = this.filterCallback.bind(this);
     this.getVehicles = this.getVehicles.bind(this);
+  }
+
+  componentDidMount() {
+    this.getVehicles();
   }
 
   getVehicles() {
@@ -68,7 +73,13 @@ class Vehicles extends React.Component {
 
   renderVehicles() {
     if (this.state.vehicles.length < 1) {
-      return 'Sorry, No Results Found!';
+      return (
+        <div>
+          <h3 className="sorry">
+            Sorry, we didn't find any results. Try changing your filters.
+          </h3>
+        </div>
+      );
     }
     return this.state.vehicles.map((item, index) => {
       return(
@@ -91,6 +102,7 @@ class Vehicles extends React.Component {
       <div className="vehicles">
         <h2>Browse Vehicles</h2>
         <VehicleFilters handler={this.filterCallback} />
+        <h2><Badge variant="secondary">Results Found: {this.state.vehicles.length}</Badge></h2>
         <div className="vehicle-list">
           {this.renderVehicles()}
         </div>

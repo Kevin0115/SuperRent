@@ -9,6 +9,7 @@ insert into vehicle_type values ('compact_electric','Air Conditioning',447,85,42
 insert into vehicle_type values ('suv_gas','Heated Seats',456,62,27,95,18,5,12);
 insert into vehicle_type values ('midsize_hybrid','Bluetooth',473,52,44,58,18,4,15);
 insert into vehicle_type values ('truck_gas','Cupholders',395,70,48,74,16,4,15);
+insert into vehicle_type values ('fullsize_gas','N02',395,70,48,74,16,4,15);
 
 insert into vehicle values (424571,'Saab',900,1999,'Maroon',223883,'available','compact_electric','Downtown','Vancouver');
 insert into vehicle values (415992,'Kia','Sportage',1999,'Violet',164243,'available','compact_electric','Downtown','Vancouver');
@@ -109,7 +110,8 @@ insert into vehicle values (158081,'GMC','Savana 2500',2008,'Aquamarine',8940,'s
 insert into vehicle values (135048,'Morgan','Aero 8',2008,'Fuscia',473682,'shop','truck_gas','Midtown','Burnaby');
 insert into vehicle values (681614,'Mercedes-Benz','C-Class',2003,'Pink',347660,'shop','truck_gas','Midtown','Burnaby');
 insert into vehicle values (230612,'Dodge','Dakota Club',1997,'Turquoise',367265,'shop','truck_gas','Midtown','Burnaby');
-insert into vehicle values (802454,'Acura','NSX',1999,'Green',364527,'shop','truck_gas','Midtown','Burnaby');
+-- RESERVATION TEST THIS VEHICLE
+insert into vehicle values (802694,'Acura','NSX',1999,'Green',364527,'shop','fullsize_gas','Midtown','Burnaby');
 
 insert into customer values (6442787,9541328538,'Simonette Oleszkiewicz','7 Hazelcrest Court');
 insert into customer values (5151896,9676249844,'Judah Rippen','447 Oakridge Plaza');
@@ -141,3 +143,5 @@ insert into customer values (6268564,3856771318,'Cornell Jermy','2823 Artisan Wa
 insert into customer values (7896440,6958672178,'Danika Biskupski','510 Grover Trail');
 insert into customer values (1756099,9652959722,'Chilton Ridge','587 Service Circle');
 insert into customer values (5772223,5946500687,'Philomena Pardy','71419 Dryden Circle');
+
+insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00');
