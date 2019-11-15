@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Import Routes
 var test = require('./routes/test');
 var customer = require('./routes/customer');
+var vehicle = require('./routes/vehicle');
 
 // Declare application parameters
 // Will have to change this if moving to a VM
@@ -30,6 +31,7 @@ var HTTP_PORT = 80;
 app.use('/', express.static(STATIC_ROOT));
 app.use('/test', test);
 app.use('/customer', customer);
+app.use('/vehicle', vehicle);
 
 // Server
 var httpServer = http.createServer(app);

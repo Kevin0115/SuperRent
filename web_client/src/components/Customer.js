@@ -6,17 +6,16 @@ import {
 } from 'react-bootstrap';
 import './Customer.css';
 
-import { postSession } from '../utils/Utils';
-
 import Register from './Register';
+import Vehicles from './Vehicles';
 
 class Customer extends React.Component {
   render() {
     return(
       <div className="customer">
-        <Tabs defaultActiveKey="reserve" className="tabs">
+        <Tabs defaultActiveKey="vehicles" className="tabs">
           <Tab eventKey="vehicles" title="Vehicles">
-            <h2>TODO</h2>
+            <Vehicles />
           </Tab>
           <Tab eventKey="reserve" title="Reservation">
             <h2>TODO</h2>

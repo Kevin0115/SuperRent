@@ -70,7 +70,7 @@ class Register extends React.Component {
       this.clearForm();
     })
     .catch(function(error) {
-      console.log('Error posting session: ' + error);
+      console.log(error);
       this.alert(false);
     })
   }
