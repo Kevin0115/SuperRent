@@ -23,7 +23,7 @@ exports.get_vehicles_by_param = (req, res) => {
   }
 
   const query = {
-    text: `select v.make, v.model, v.year, v.color
+    text: `select *
     from vehicle v
     where v.vtname like $1
     and v.branch_location like $6 and v.branch_city like $7

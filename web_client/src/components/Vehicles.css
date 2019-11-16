@@ -28,7 +28,7 @@
 }
 
 .interval {
-  width: 240px;
+  width: 280px;
   display: flex;
   flex-direction: row;
   padding: 8px;
@@ -37,7 +37,7 @@
 .interval-label {
   display: flex;
   flex-direction: column;
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 .vehicle-list {
@@ -50,4 +50,24 @@
 .vehicle-card {
   width: 300px;
   margin-top: 16px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+}
+
+.modal-body > * {
+  margin-bottom: 16px;
+}
+
+.note {
+  opacity: 0.5;
+}
+
+.alert-wrapper: {
+  position: fixed;
+  top: 24px;
 }

@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 var test = require('./routes/test');
 var customer = require('./routes/customer');
 var vehicle = require('./routes/vehicle');
+var reservation = require('./routes/reservation');
 
 // Declare application parameters
 // Will have to change this if moving to a VM
@@ -32,6 +33,7 @@ app.use('/', express.static(STATIC_ROOT));
 app.use('/test', test);
 app.use('/customer', customer);
 app.use('/vehicle', vehicle);
+app.use('/reservation', reservation);
 
 // Server
 var httpServer = http.createServer(app);

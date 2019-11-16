@@ -5,12 +5,15 @@ import {
   Tab,
   Dropdown,
   Card,
-  Badge
+  Badge,
+  Modal,
+  Alert
 } from 'react-bootstrap';
 import './Vehicles.css';
 
 import { API_BASE, POST } from '../utils/Const';
 import VehicleFilters from './VehicleFilters';
+import ReservationModal from './ReservationModal';
 
 import { formatDate, formatTime } from '../utils/Utils';
 
@@ -27,10 +30,32 @@ class Vehicles extends React.Component {
         toDate: formatDate(new Date()),
         toTime: formatTime(new Date()),
       },
-      vehicles: []
+      vehicles: [],
+      showModal: false,
+      showAlert: false,
+      alertMessage: '',
+      alertTitle: '',
+      alertColor: 'success',
+      confNo: null,
+      reservationProps: {},
+      reservationInfo: {
+        vtname: null,
+        vlicense: null,
+        dlicense: null,
+        from_date: null,
+        from_time: null,
+        to_date: null,
+        to_time: null,
+        branch_location: null,
+        branch_city: null
+      }
     }
     this.filterCallback = this.filterCallback.bind(this);
     this.getVehicles = this.getVehicles.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.reserveCallback = this.reserveCallback.bind(this);
+    this.renderAlert = this.renderAlert.bind(this);
   }
 
   componentDidMount() {
@@ -71,6 +96,100 @@ class Vehicles extends React.Component {
     this.getVehicles);
   }
 
+  handleOpenModal(vehicle) {
+    this.setState({
+      showModal: true,
+      reservationProps: {
+        ...vehicle,
+        ...this.state.filters
+      },
+      // Prepare the reservation state
+      reservationInfo: {
+        vtname: vehicle.vtname,
+        vlicense: vehicle.vlicense,
+        dlicense: null,
+        from_date: null,
+        from_time: null,
+        to_date: null,
+        to_time: null,
+        branch_location: vehicle.branch_location,
+        branch_city: vehicle.branch_city
+      }
+    });
+  }
+
+  handleCloseModal() {
+    this.setState({showModal: false});
+  }
+
+  reserveCallback(options) {
+    const { vlicense, vtname, branch_city, branch_location } = this.state.reservationInfo;
+
+    this.setState({
+      reservationInfo: {
+        dlicense: options.dlicense,
+        from_date: options.fromDate,
+        from_time: options.fromTime,
+        to_date: options.toDate,
+        to_time: options.toTime,
+        vtname,
+        vlicense,
+        branch_location,
+        branch_city
+      }
+    },
+    this.createReservation)
+  }
+
+  createReservation() {
+    const { vlicense, vtname, dlicense, from_date, from_time, to_date, to_time, branch_city, branch_location } = this.state.reservationInfo;
+
+    fetch(API_BASE + 'reservation', {
+      method: POST,
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        vtname: vtname,
+        vlicense: vlicense,
+        dlicense: dlicense,
+        from_date: from_date,
+        from_time: from_time,
+        to_date: to_date,
+        to_time: to_time,
+        branch_location: branch_location,
+        branch_city: branch_city
+      })
+    })
+    .then(res => res.json())
+    .then(json => {
+      if (json.success) {
+        this.setState({
+          alertTitle: 'All Done!',
+          alertMessage: 'Your reservation has been successfully created! Confirmation #',
+          alertColor: 'success',
+          showAlert: true,
+          showModal: false,
+          confNo: json.content,
+        },
+        this.getVehicles)
+      } else {
+        this.setState({
+          alertTitle: 'Something went wrong.',
+          alertMessage: json.content,
+          alertColor: 'danger',
+          showAlert: true,
+          showModal: false,
+          confNo: null,
+        })
+      }
+      setTimeout((() => this.setState({showAlert: false})), 10000);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }
+
   renderVehicles() {
     if (this.state.vehicles.length < 1) {
       return (
@@ -88,13 +207,24 @@ class Vehicles extends React.Component {
           <Card.Body>
             <Card.Title>{item.year + ' ' + item.make + ' ' + item.model}</Card.Title>
             <Card.Text>
-              Additional Information.
+              Location: {item.branch_location + ' ' + item.branch_city}
             </Card.Text>
-            <Button variant="primary">Rent me Now!</Button>
+            <Button variant="primary" onClick={() => this.handleOpenModal(item)}>Rent me Now!</Button>
           </Card.Body>
         </Card>
       );
     });
+  }
+
+  renderAlert() {
+    if (this.state.showAlert) {
+      return(
+        <Alert variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
+          <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
+          <p>{this.state.alertMessage} {this.state.confNo}</p>
+        </Alert>
+      );
+    }
   }
 
   render() {
@@ -106,6 +236,14 @@ class Vehicles extends React.Component {
         <div className="vehicle-list">
           {this.renderVehicles()}
         </div>
+        <ReservationModal
+          showModal={this.state.showModal}
+          reservationProps={this.state.reservationProps}
+          handleCloseModal={this.handleCloseModal}
+          handler={this.reserveCallback} 
+          renderAlert={this.renderAlert}
+        />
+        {this.renderAlert()}
       </div>
     );
   }

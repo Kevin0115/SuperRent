@@ -1,4 +1,4 @@
-.reserve, .profile, .register {
+.reserve, .vehicles, .register {
   display: flex;
   flex-direction: column;
   justify-content: center;

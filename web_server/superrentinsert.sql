@@ -144,4 +144,4 @@ insert into customer values (7896440,6958672178,'Danika Biskupski','510 Grover T
 insert into customer values (1756099,9652959722,'Chilton Ridge','587 Service Circle');
 insert into customer values (5772223,5946500687,'Philomena Pardy','71419 Dryden Circle');
 
-insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00');
+insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00','Midtown','Burnaby');

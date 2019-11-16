@@ -58,22 +58,22 @@ class Console extends React.Component {
         <h2>System Administration Console</h2>
         <Button variant="danger" size="lg" onClick={this.handleOpenModal}>Delete All Customers</Button>
         <Modal show={this.state.showModal} onHide={this.handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Deleting All Customers</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Are you sure you want to proceed?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleCloseModal}>
-            Cancel
-          </Button>
-          <Button variant="danger" onClick={this.handleDeleteCustomers}>
-            Delete Customers
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <Alert className="alert" show={this.state.showAlert} variant="warning" onClose={() => this.setState({showAlert: false})} dismissible>
-        {'All Customers Successfully Deleted'}
-      </Alert>
+          <Modal.Header closeButton>
+            <Modal.Title>Deleting All Customers</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to proceed?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleCloseModal}>
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={this.handleDeleteCustomers}>
+              Delete Customers
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <Alert className="alert" show={this.state.showAlert} variant="warning" onClose={() => this.setState({showAlert: false})} dismissible>
+          {'All Customers Successfully Deleted'}
+        </Alert>
       </div>
     );
   }

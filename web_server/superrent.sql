@@ -51,6 +51,7 @@ create table vehicle (
 );
 
 create table reservation (
+    -- This will be 7 digits
     conf_no integer not null primary key,
     -- I added this to be able to reference which vehicles are reserved
     vlicense integer not null,
@@ -60,9 +61,13 @@ create table reservation (
     from_time time not null,
     to_date date not null,
     to_time time not null,
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
     foreign key (vlicense) references vehicle,
     foreign key (vtname) references vehicle_type,
-    foreign key (dlicense) references customer
+    foreign key (dlicense) references customer,
+    -- Added location/city to reservation because that makes sense
+    foreign key (branch_location, branch_city) references branch
     -- foreign key (from_date, from_time, to_date, to_time) references time_period
 );
 
@@ -79,9 +84,13 @@ create table rental (
     card_no bigint not null,
     exp_date date not null,
     conf_no integer,
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
     foreign key (vlicense) references vehicle,
     foreign key (dlicense) references customer,
-    foreign key (conf_no) references reservation
+    foreign key (conf_no) references reservation,
+    -- Added location/city to reservation because that makes sense
+    foreign key (branch_location, branch_city) references branch
     -- foreign key (from_date, from_time, to_date, to_time) references time_period
 );
 
