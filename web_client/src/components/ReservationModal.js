@@ -14,7 +14,7 @@ import {
 import './Vehicles.css';
 
 import DatetimeRangePicker from 'react-datetime-range-picker';
-import { formatDate, formatTime } from '../utils/Utils';
+import { formatDate, formatTime, calculatePrice } from '../utils/Utils';
 
 class ReservationModal extends React.Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class ReservationModal extends React.Component {
       fromTime: formatTime(new Date()),
       toDate: formatDate(new Date()),
       toTime: formatTime(new Date()),
+      price: 0,
     }
     this.handleLicenseChange = this.handleLicenseChange.bind(this);
     this.handleIntervalChange = this.handleIntervalChange.bind(this);
@@ -36,11 +37,13 @@ class ReservationModal extends React.Component {
   }
 
   handleIntervalChange(e) {
+    const { h_rate, hi_rate, d_rate, di_rate, w_rate, wi_rate } = this.props.reservationProps;
     this.setState({
       fromDate: formatDate(e.start),
       fromTime: formatTime(e.start),
       toDate: formatDate(e.end),
       toTime: formatTime(e.end),
+      price: calculatePrice(e.start, e.end, (h_rate + hi_rate), (d_rate + di_rate), (w_rate + wi_rate)),
     });
   }
 
@@ -49,7 +52,8 @@ class ReservationModal extends React.Component {
   }
 
   render() {
-    const { make, model, year, branch_location, branch_city } = this.props.reservationProps;
+    const { make, model, year, branch_location, branch_city, color, d_rate, di_rate,
+      h_rate, hi_rate, w_rate, wi_rate, features } = this.props.reservationProps;
     return(
       <Modal size="lg" show={this.props.showModal} onHide={this.props.handleCloseModal} centered>
         <Modal.Header closeButton>
@@ -64,6 +68,12 @@ class ReservationModal extends React.Component {
                 </Card.Text>
               </Card.Body>
             </Card>
+            <h5>Color: {color}</h5>
+            <h5>Features: {features}</h5>
+            <h5>Rates (Including Insurance):</h5>
+            <p>Hourly: ${h_rate + hi_rate}/hr</p>
+            <p>Daily: ${d_rate + di_rate}/day</p>
+            <p>Weekly: ${w_rate + wi_rate}/wk</p>
             <h5>Please Confirm your Driver's License Number:</h5>
             <InputGroup>
               <FormControl placeholder="9999999" onChange={this.handleLicenseChange} maxLength="7" />
@@ -78,13 +88,14 @@ class ReservationModal extends React.Component {
                 onChange={this.handleIntervalChange}
               />
             </div>
+            <p>Your Estimated Price: ${this.state.price}</p>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={this.props.handleCloseModal}>
             Cancel
           </Button>
-          <Button variant="success" onClick={this.handleReserve}>
+          <Button variant="success" onClick={this.handleReserve} disabled={this.state.dlicense == null || this.state.dlicense.toString().length < 7}>
             Reserve
           </Button>
         </Modal.Footer>

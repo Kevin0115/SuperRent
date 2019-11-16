@@ -22,6 +22,11 @@ exports.create_reservation = async (req, res) => {
     res.send({success: false, content: 'Sorry, the reservation interval you requested is invalid.'});
     return; // Nothing more to do here.
   }
+  // Validate that the starting time for the reservation is not before today
+  if (from_timestamp < moment().unix()) {
+    res.send({success: false, content: 'Sorry, you cannot book a reservation in the past'});
+    return; // Nothing more to do here.
+  }
   // Vehicle Details
   const vtname = req.body.vtname;
   let vlicense = req.body.vlicense;

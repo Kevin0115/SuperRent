@@ -24,8 +24,10 @@ exports.get_vehicles_by_param = (req, res) => {
 
   const query = {
     text: `select *
-    from vehicle v
+    from vehicle v, vehicle_type vt
     where v.vtname like $1
+    and v.vtname = vt.vtname
+    and v.status like 'available'
     and v.branch_location like $6 and v.branch_city like $7
     and not exists (
       select *
