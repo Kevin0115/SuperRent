@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c94b74b0c7a773909d978e257c2ae4b1",
+    "revision": "6a2f6d489c546c0d9b29033aa411a8fb",
     "url": "/SuperRent/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SuperRent/static/css/2.e7ec537b.chunk.css"
   },
   {
-    "revision": "8ed9949239e548d92491",
+    "revision": "07b31bf93aa9673d8fa1",
     "url": "/SuperRent/static/css/main.dbb9105d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/SuperRent/static/js/2.4874b741.chunk.js"
   },
   {
-    "revision": "8ed9949239e548d92491",
-    "url": "/SuperRent/static/js/main.fc8533d3.chunk.js"
+    "revision": "07b31bf93aa9673d8fa1",
+    "url": "/SuperRent/static/js/main.7a8f3fa3.chunk.js"
   },
   {
     "revision": "53886a85288e0dbc5d59",
