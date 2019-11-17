@@ -27,7 +27,7 @@ var rental = require('./routes/rental');
 
 // Declare application parameters
 // Will have to change this if moving to a VM
-var HTTP_PORT = 80;
+var HTTP_PORT = 8090;
 
 // Routes
 app.use('/', express.static(STATIC_ROOT));
