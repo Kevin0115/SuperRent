@@ -192,7 +192,7 @@ exports.get_reservation = (req, res) => {
             from reservation r, vehicle v
             where r.conf_no = $1
             and r.dlicense = $2
-            and r.dlicense = v.vlicense`,
+            and r.vlicense = v.vlicense`,
     values: [conf_no, dlicense]
   }
 
