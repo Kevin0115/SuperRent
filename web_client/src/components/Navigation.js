@@ -12,7 +12,6 @@ import {
   Button,
 } from 'react-bootstrap';
 
-import { postSession } from '../utils/Utils.js';
 import './Navigation.css';
 
 import Customer from './Customer';

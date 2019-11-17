@@ -1,6 +1,9 @@
 const connection = require('../config/db_config');
 var moment = require('moment');
 
+const MINUTES_IN_HOUR = 3600;
+const MINUTES_IN_WEEK = 2419200;
+
 /**
  * Customer has an existing reservation
  * This means their reservation holds a SPECIFIC vehicle (by vlicense)
@@ -140,6 +143,14 @@ exports.create_rental_no_reservation = (req, res) => {
   const from_time = moment().format('hh:mm:ss');
   const branch_location = req.body.branch_location;
   const branch_city = req.body.branch_city;
+
+  // Validate that the request interval is at least 1 hour or at most 4 weeks
+  const from_timestamp = moment(from_date + 'T' + from_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS).unix();
+  const to_timestamp = moment(to_date + 'T' + to_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS).unix();
+  if (to_timestamp - from_timestamp < MINUTES_IN_HOUR ||  to_timestamp - from_timestamp > MINUTES_IN_WEEK) {
+    res.send({success: false, content: 'Sorry, the rental interval you requested is invalid.'});
+    return; // Nothing more to do here.
+  }
 
   // First verify that this customer exists in the database
   const customer_query = {

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Button,
-  Form,
   Modal,
   Alert
 } from 'react-bootstrap';

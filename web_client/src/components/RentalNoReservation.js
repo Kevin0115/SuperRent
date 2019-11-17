@@ -1,18 +1,8 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
   Button,
-  Tabs,
-  Tab,
-  Form
+  Form,
+  Alert
 } from 'react-bootstrap';
 import './Clerk.css';
 
@@ -31,7 +21,8 @@ class RentalNoReservation extends React.Component {
       toTime: null,
       branchLocation: null,
       branchCity: null,
-      vtname: null
+      vtname: null,
+      showAlert: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -62,13 +53,32 @@ class RentalNoReservation extends React.Component {
     .then(res => res.json())
     .then(json => {
       console.log(json);
-      // this.alert(json.success)
-      // this.clearForm();
+      this.alert(json.success, json.content);
+      this.clearForm();
     })
     .catch(function(error) {
       console.log(error);
       this.alert(false);
     })
+  }
+
+  alert(success, content) {
+    if (success) {
+      this.setState({
+        showAlert: true,
+        alertTitle: 'Success!',
+        alertMessage: 'Rental Successfully Booked.',
+        alertColor: 'success'
+      });
+    } else {
+      this.setState({
+        showAlert: true,
+        alertTitle: 'Sorry...',
+        alertMessage: content,
+        alertColor: 'danger'
+      });
+    }
+    setTimeout((() => this.setState({showAlert: false})), 3000);
   }
 
   handleChange(e) {
@@ -135,6 +145,10 @@ class RentalNoReservation extends React.Component {
             Submit
           </Button>
         </form>
+        <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
+          <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
+          <p>{this.state.alertMessage}</p>
+        </Alert>
       </div>
     );
   }

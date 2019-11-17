@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Button,
-  Tabs,
-  Tab,
   Dropdown
 } from 'react-bootstrap';
 import './Vehicles.css';

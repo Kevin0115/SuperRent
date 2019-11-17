@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Tabs,
   Tab
 } from 'react-bootstrap';

@@ -7,7 +7,6 @@ import {
 import './Customer.css';
 
 import { API_BASE, POST } from '../utils/Const';
-import { registerCustomer } from '../utils/Utils';
 
 class Register extends React.Component {
   constructor(props) {

@@ -1,21 +1,9 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Button,
   Tabs,
   Tab
 } from 'react-bootstrap';
 import './Clerk.css';
-
-import { postSession } from '../utils/Utils.js';
 
 import RentalReservation from './RentalReservation';
 import RentalNoReservation from './RentalNoReservation';

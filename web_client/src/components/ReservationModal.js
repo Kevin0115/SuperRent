@@ -1,13 +1,8 @@
 import React from 'react';
 import {
   Button,
-  Tabs,
-  Tab,
-  Dropdown,
   Card,
-  Badge,
   Modal,
-  Alert,
   InputGroup,
   FormControl
 } from 'react-bootstrap';
