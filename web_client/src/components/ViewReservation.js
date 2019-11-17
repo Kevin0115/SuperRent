@@ -3,11 +3,12 @@ import {
   Button,
   Form,
   Card,
+  Alert
 } from 'react-bootstrap';
 import './Customer.css';
 
-import { API_BASE, GET } from '../utils/Const';
-import { noNullState, formatDate, formatTime, formatType } from '../utils/Utils';
+import { API_BASE, GET, DELETE } from '../utils/Const';
+import { formatDate, formatType } from '../utils/Utils';
 
 class ViewReservation extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ViewReservation extends React.Component {
       responseStatus: null,
       responseContent: null,
       display: false,
+      showAlert: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,6 +53,28 @@ class ViewReservation extends React.Component {
     })
   }
 
+  handleCancel(confNo, dlicense) {
+    fetch(API_BASE + 'reservation/' + confNo + '/' + dlicense, {
+      method: DELETE,
+      headers: {
+      'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      this.setState({
+        display: false,
+        responseContent: null,
+        responseStatus: null,
+        showAlert: true
+      })
+      setTimeout((() => this.setState({showAlert: false})), 5000);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }
+
   clearForm() {
     this.setState({
       dlicense: null,
@@ -62,16 +86,17 @@ class ViewReservation extends React.Component {
   renderResponse() {
     if (!this.state.display) return null;
     if (this.state.responseStatus) {
-      const { vlicense, from_date, from_time, to_date, to_time, branch_location, branch_city, vtname, make, model } = this.state.responseContent;
+      const { vlicense, from_date, from_time, to_date, to_time, branch_location, branch_city, vtname, make, model, year, color, conf_no, dlicense } = this.state.responseContent;
       return (
         <div className="response">
           <Card>
-            <Card.Header as="h6">Renting {make} {model}</Card.Header>
+            <Card.Header as="h6">Reservation for: {year} {make} {model}</Card.Header>
             <Card.Body>
-              <Card.Subtitle className="mb-2 text-muted">{formatType(vtname)}</Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">{formatType(vtname)} - {color} - Plate: {vlicense}</Card.Subtitle>
               <Card.Text>From: {formatDate(from_date)} {from_time}</Card.Text>
               <Card.Text>To: {formatDate(to_date)} {to_time}</Card.Text>
               <Card.Text>Location: {branch_location} {branch_city}</Card.Text>
+              <Button variant="danger" onClick={() => this.handleCancel(conf_no, dlicense)}>Cancel this Reservation</Button>
             </Card.Body>
           </Card>
         </div>
@@ -99,8 +124,12 @@ class ViewReservation extends React.Component {
           <Button variant="primary" type="submit" disabled={this.state.dlicense == null || this.state.confNo == null}>
             Submit
           </Button>
-          {this.renderResponse()}
         </form>
+        {this.renderResponse()}
+        <Alert className="alert" show={this.state.showAlert} variant="success" onClose={() => this.setState({showAlert: false})} dismissible>
+            <Alert.Heading>Success</Alert.Heading>
+            <p>Your reservation has been cancelled.</p>
+          </Alert>
       </div>
     );
   }

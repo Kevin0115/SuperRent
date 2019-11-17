@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import './Customer.css';
 
-import { formatDate, formatTime, calculatePrice, noNullState } from '../utils/Utils';
+import { formatDate, formatTime, noNullState } from '../utils/Utils';
 import { API_BASE, POST } from '../utils/Const';
 import DatetimeRangePicker from 'react-datetime-range-picker';
 
