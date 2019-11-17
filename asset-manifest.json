@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/superrent/static/css/main.dbb9105d.chunk.css",
+    "main.js": "/superrent/static/js/main.e3fdd055.chunk.js",
+    "main.js.map": "/superrent/static/js/main.e3fdd055.chunk.js.map",
+    "runtime-main.js": "/superrent/static/js/runtime-main.6da6da8e.js",
+    "runtime-main.js.map": "/superrent/static/js/runtime-main.6da6da8e.js.map",
+    "static/css/2.e7ec537b.chunk.css": "/superrent/static/css/2.e7ec537b.chunk.css",
+    "static/js/2.03a8d015.chunk.js": "/superrent/static/js/2.03a8d015.chunk.js",
+    "static/js/2.03a8d015.chunk.js.map": "/superrent/static/js/2.03a8d015.chunk.js.map",
+    "index.html": "/superrent/index.html",
+    "precache-manifest.361be39ad889a2eeec1ce566c0b5c43d.js": "/superrent/precache-manifest.361be39ad889a2eeec1ce566c0b5c43d.js",
+    "service-worker.js": "/superrent/service-worker.js",
+    "static/css/2.e7ec537b.chunk.css.map": "/superrent/static/css/2.e7ec537b.chunk.css.map",
+    "static/css/main.dbb9105d.chunk.css.map": "/superrent/static/css/main.dbb9105d.chunk.css.map",
+    "static/media/logo.png": "/superrent/static/media/logo.da32b097.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6da6da8e.js",
+    "static/css/2.e7ec537b.chunk.css",
+    "static/js/2.03a8d015.chunk.js",
+    "static/css/main.dbb9105d.chunk.css",
+    "static/js/main.e3fdd055.chunk.js"
+  ]
+}
