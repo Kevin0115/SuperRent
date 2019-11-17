@@ -111,7 +111,7 @@ insert into vehicle values (135048,'Morgan','Aero 8',2008,'Fuscia',473682,'shop'
 insert into vehicle values (681614,'Mercedes-Benz','C-Class',2003,'Pink',347660,'shop','truck_gas','Midtown','Burnaby');
 insert into vehicle values (230612,'Dodge','Dakota Club',1997,'Turquoise',367265,'shop','truck_gas','Midtown','Burnaby');
 -- RESERVATION TEST THIS VEHICLE
-insert into vehicle values (802694,'Acura','NSX',1999,'Green',364527,'shop','fullsize_gas','Midtown','Burnaby');
+insert into vehicle values (802694,'Acura','NSX',1999,'Green',364527,'available','fullsize_gas','Midtown','Burnaby');
 
 insert into customer values (6442787,9541328538,'Simonette Oleszkiewicz','7 Hazelcrest Court');
 insert into customer values (5151896,9676249844,'Judah Rippen','447 Oakridge Plaza');

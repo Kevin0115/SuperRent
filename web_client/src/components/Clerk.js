@@ -17,6 +17,8 @@ import './Clerk.css';
 
 import { postSession } from '../utils/Utils.js';
 
+import RentalReservation from './RentalReservation';
+import RentalNoReservation from './RentalNoReservation';
 import Console from './Console';
 
 class Clerk extends React.Component {
@@ -24,8 +26,11 @@ class Clerk extends React.Component {
     return(
       <div className="clerk">
         <Tabs defaultActiveKey="rental" className="tabs">
-          <Tab eventKey="rental" title="Rental" className="tab">
-            <h2>TODO</h2>
+          <Tab eventKey="rental" title="Rental (no Reservation)" className="tab">
+            <RentalNoReservation />
+          </Tab>
+          <Tab eventKey="rental-reservation" title="Rental (with Reservation)" className="tab">
+            <RentalReservation />
           </Tab>
           <Tab eventKey="return" title="Return">
             <h2>TODO</h2>

@@ -83,7 +83,7 @@ create table rental (
     card_name varchar(50),
     card_no bigint not null,
     exp_date date not null,
-    conf_no integer,
+    conf_no integer, -- NO NEED FOR A PRIOR RESERVATION
     branch_location varchar(20) not null,
     branch_city varchar(20) not null,
     foreign key (vlicense) references vehicle,

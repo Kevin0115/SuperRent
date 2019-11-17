@@ -24,40 +24,25 @@ class Register extends React.Component {
       alertTitle: null,
       alertColor: null,
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
-    this.handlePhoneChange = this.handlePhoneChange.bind(this);
-    this.handleLicenseChange = this.handleLicenseChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearForm = this.clearForm.bind(this);
   }
 
-  handleNameChange(e) {
-    this.setState({name: e.target.value});
-  }
-
-  handleAddressChange(e) {
-    this.setState({address: e.target.value});
-  }
-
-  handlePhoneChange(e) {
-    this.setState({phone: e.target.value});
-  }
-
-  handleLicenseChange(e) {
-    this.setState({license: e.target.value});
+  handleChange(e) {
+    this.setState({[e.target.name]: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { name, address, phone, license } = this.state;
+    const { name, address, phone, dlicense } = this.state;
     fetch(API_BASE + 'customer', {
       method: POST,
       headers: {
       'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "dlicense": license,
+        "dlicense": dlicense,
         "cellphone": phone,
         "name": name,
         "address": address
@@ -111,19 +96,19 @@ class Register extends React.Component {
         <form className="form" ref={ form => this.messageForm = form } onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" onChange={this.handleNameChange} placeholder="John Appleseed" />
+            <Form.Control type="text" name="name" onChange={this.handleChange} placeholder="John Appleseed" />
           </Form.Group>
           <Form.Group>
             <Form.Label>Address</Form.Label>
-            <Form.Control type="text" onChange={this.handleAddressChange} placeholder="1 Hacker Way" />
+            <Form.Control type="text" name="address" onChange={this.handleChange} placeholder="1 Hacker Way" />
           </Form.Group>
           <Form.Group>
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="number" onChange={this.handlePhoneChange} placeholder="6048882424"/>
+            <Form.Control type="number" name="phone" onChange={this.handleChange} placeholder="6048882424"/>
           </Form.Group>
           <Form.Group>
             <Form.Label>Driver's License Number</Form.Label>
-            <Form.Control type="number" onChange={this.handleLicenseChange} placeholder="9779800" />
+            <Form.Control type="number" name="dlicense" onChange={this.handleChange} placeholder="9779800" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

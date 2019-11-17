@@ -34,6 +34,12 @@ exports.get_vehicles_by_param = (req, res) => {
       from reservation r
       where v.vlicense = r.vlicense
       and ($2::date + $3::time, $4::date + $5::time) overlaps (r.from_date + r.from_time, r.to_date + r.to_time)
+    )
+    and not exists(
+      select *
+      from rental rt
+      where v.vlicense = rt.vlicense
+      and ($2::date + $3::time, $4::date + $5::time) overlaps (rt.from_date + rt.from_time, rt.to_date + rt.to_time)
     )`,
     values: [vtname, from_date, from_time, to_date, to_time, branch_location, branch_city]
   }

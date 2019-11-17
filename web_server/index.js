@@ -23,6 +23,7 @@ var test = require('./routes/test');
 var customer = require('./routes/customer');
 var vehicle = require('./routes/vehicle');
 var reservation = require('./routes/reservation');
+var rental = require('./routes/rental');
 
 // Declare application parameters
 // Will have to change this if moving to a VM
@@ -34,6 +35,7 @@ app.use('/test', test);
 app.use('/customer', customer);
 app.use('/vehicle', vehicle);
 app.use('/reservation', reservation);
+app.use('/rental', rental);
 
 // Server
 var httpServer = http.createServer(app);

@@ -58,6 +58,12 @@ exports.create_reservation = async (req, res) => {
                     where v.vlicense = r.vlicense
                     and ($2::date + $3::time, $4::date + $5::time) overlaps (r.from_date + r.from_time, r.to_date + r.to_time)
                   )
+                  and not exists(
+                    select *
+                    from rental rt
+                    where v.vlicense = rt.vlicense
+                    and ($2::date + $3::time, $4::date + $5::time) overlaps (rt.from_date + rt.from_time, rt.to_date + rt.to_time)
+                  )
                   limit 1`,
           values: [vtname, from_date, from_time, to_date, to_time, branch_location, branch_city]
         }

@@ -10,6 +10,11 @@ export const formatTime = (date) => {
   return moment(date).format('hh:mm:ss');
 }
 
+export const formatLocation = (location) => {
+  let string = location.toLowerCase();
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
   const intervalSeconds = moment(to).unix() - moment(from).unix();
   const intervalHours = intervalSeconds / 3600;
