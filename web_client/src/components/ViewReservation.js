@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Button,
   Form,
-  Alert,
+  Card,
 } from 'react-bootstrap';
 import './Customer.css';
 
 import { API_BASE, GET } from '../utils/Const';
-import { noNullState } from '../utils/Utils';
+import { noNullState, formatDate, formatTime, formatType } from '../utils/Utils';
 
 class ViewReservation extends React.Component {
   constructor(props) {
@@ -39,7 +39,6 @@ class ViewReservation extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json);
       this.setState({
         responseStatus: json.success,
         responseContent: json.content,
@@ -63,8 +62,19 @@ class ViewReservation extends React.Component {
   renderResponse() {
     if (!this.state.display) return null;
     if (this.state.responseStatus) {
+      const { vlicense, from_date, from_time, to_date, to_time, branch_location, branch_city, vtname, make, model } = this.state.responseContent;
       return (
-        <div>YAY</div>
+        <div className="response">
+          <Card>
+            <Card.Header as="h6">Renting {make} {model}</Card.Header>
+            <Card.Body>
+              <Card.Subtitle className="mb-2 text-muted">{formatType(vtname)}</Card.Subtitle>
+              <Card.Text>From: {formatDate(from_date)} {from_time}</Card.Text>
+              <Card.Text>To: {formatDate(to_date)} {to_time}</Card.Text>
+              <Card.Text>Location: {branch_location} {branch_city}</Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
       );
     } else {
       return (

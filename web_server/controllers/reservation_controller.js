@@ -189,9 +189,10 @@ exports.get_reservation = (req, res) => {
 
   const reservation_query = {
     text: `select *
-            from reservation
-            where conf_no = $1
-            and dlicense = $2`,
+            from reservation r, vehicle v
+            where r.conf_no = $1
+            and r.dlicense = $2
+            and r.dlicense = v.vlicense`,
     values: [conf_no, dlicense]
   }
 
