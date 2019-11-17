@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link,
@@ -22,7 +22,7 @@ class Navigation extends React.Component {
     return(
       <Router>
         <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="/">
+          <Navbar.Brand href={process.env.PUBLIC_URL}>
             <img
               src={require('../logo.png')}
               width="90"
@@ -36,21 +36,21 @@ class Navigation extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
               <NavDropdown title={'Change User'} id="collasible-nav-dropdown" drop="left">
-                <NavDropdown.Item as={Link} to="/customer">Customer</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/customer"}>Customer</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/clerk">Clerk</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/clerk"}>Clerk</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
         <Switch>
-          <Route exact path="/">
+          <Route exact path={"/"}>
             <Main />
           </Route>
-          <Route path="/customer">
+          <Route path={"/customer"}>
             <Customer />
           </Route>
-          <Route path="/clerk">
+          <Route path={"/clerk"}>
             <Clerk />
           </Route>
         </Switch>
@@ -67,7 +67,7 @@ function Main() {
         className="nav-button"
         variant="secondary"
         size="lg"
-        href="/customer"
+        as={Link} to={"/customer"}
       >
         Customer
       </Button>
@@ -75,7 +75,7 @@ function Main() {
         className="nav-button"
         variant="secondary"
         size="lg"
-        href="/clerk"
+        as={Link} to={"/customer"}
       >
         Clerk
       </Button>
