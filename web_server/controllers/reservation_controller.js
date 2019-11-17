@@ -37,8 +37,8 @@ exports.create_reservation = async (req, res) => {
     values: [dlicense]
   }
   connection.query(license_query)
-  .then(queryRes => {
-    if (queryRes.rows.length == 0) {
+  .then(result => {
+    if (result.rows.length == 0) {
       res.send({success: false, content: 'You appear to be new! Please press the \'Register\' tab and register your information with us.'});
     } else {
       // Valid customer, so start querying their request
@@ -81,11 +81,11 @@ exports.create_reservation = async (req, res) => {
               values: [vtname, from_date, from_time, to_date, to_time, branch_location, branch_city]
             }
             connection.query(vehicle_query)
-            .then(queryRes => {
-              if (queryRes.rows.length == 0) {
+            .then(result => {
+              if (result.rows.length == 0) {
                 res.send({success: false, content: 'No vehicles for selected vehicle type found at this location during reservation interval.'});
               } else {
-                const vlicense = queryRes.rows[0].vlicense;
+                const vlicense = result.rows[0].vlicense;
                 // We've found a suitable vehicle. Make a reservation for it
                 const reservation_query = {
                   text: `insert into reservation
@@ -135,8 +135,8 @@ exports.create_reservation = async (req, res) => {
               values: [vlicense, from_date, from_time, to_date, to_time]
             }
             connection.query(vehicle_query)
-            .then(queryRes => {
-              if (queryRes.rows.length == 0) {
+            .then(result => {
+              if (result.rows.length == 0) {
                 res.send({success: false, content: 'Sorry, this vehicle is reserved during your desired interval. Please browse vehicles using the date interval filter.'});
               } else {
                 const reservation_query = {
@@ -196,8 +196,34 @@ exports.get_reservation = (req, res) => {
   }
 
   connection.query(reservation_query)
-  .then(queryRes => {
-    res.send({success: true, content: queryRes.rows});
+  .then(result => {
+    res.send({success: true, content: result.rows});
+  })
+  .catch(err => {
+    console.error(err);
+    res.send({success: false, content: err.detail});
+  })
+}
+
+exports.cancel_reservation = (req, res) => {
+  const dlicense = req.params.dlicense;
+  const conf_no = req.params.conf_no;
+
+  const reservation_query = {
+    text: `delete
+            from reservation
+            where conf_no = $1
+            and dlicense = $2`,
+    values: [conf_no, dlicense]
+  }
+
+  connection.query(reservation_query)
+  .then(result => {
+    if (result.rowCount < 1) {
+      res.send({success: false, content: 'No reservation found for given Confirmation ID and Driver License #'});
+    } else {
+      res.send({success: true, content: 'Your reservation has successfully been cancelled'});
+    }
   })
   .catch(err => {
     console.error(err);
