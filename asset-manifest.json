@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/SuperRent/static/css/main.dbb9105d.chunk.css",
-    "main.js": "/SuperRent/static/js/main.d61d585d.chunk.js",
-    "main.js.map": "/SuperRent/static/js/main.d61d585d.chunk.js.map",
+    "main.js": "/SuperRent/static/js/main.e079e82d.chunk.js",
+    "main.js.map": "/SuperRent/static/js/main.e079e82d.chunk.js.map",
     "runtime-main.js": "/SuperRent/static/js/runtime-main.30b035a9.js",
     "runtime-main.js.map": "/SuperRent/static/js/runtime-main.30b035a9.js.map",
     "static/css/2.e7ec537b.chunk.css": "/SuperRent/static/css/2.e7ec537b.chunk.css",
-    "static/js/2.6355f305.chunk.js": "/SuperRent/static/js/2.6355f305.chunk.js",
-    "static/js/2.6355f305.chunk.js.map": "/SuperRent/static/js/2.6355f305.chunk.js.map",
+    "static/js/2.a0b23976.chunk.js": "/SuperRent/static/js/2.a0b23976.chunk.js",
+    "static/js/2.a0b23976.chunk.js.map": "/SuperRent/static/js/2.a0b23976.chunk.js.map",
     "index.html": "/SuperRent/index.html",
-    "precache-manifest.13a8718d63183a966767aeab5755a2cd.js": "/SuperRent/precache-manifest.13a8718d63183a966767aeab5755a2cd.js",
+    "precache-manifest.b62217d4d626f1fba5e87071cd363336.js": "/SuperRent/precache-manifest.b62217d4d626f1fba5e87071cd363336.js",
     "service-worker.js": "/SuperRent/service-worker.js",
     "static/css/2.e7ec537b.chunk.css.map": "/SuperRent/static/css/2.e7ec537b.chunk.css.map",
     "static/css/main.dbb9105d.chunk.css.map": "/SuperRent/static/css/main.dbb9105d.chunk.css.map",
@@ -18,8 +18,8 @@
   "entrypoints": [
     "static/js/runtime-main.30b035a9.js",
     "static/css/2.e7ec537b.chunk.css",
-    "static/js/2.6355f305.chunk.js",
+    "static/js/2.a0b23976.chunk.js",
     "static/css/main.dbb9105d.chunk.css",
-    "static/js/main.d61d585d.chunk.js"
+    "static/js/main.e079e82d.chunk.js"
   ]
 }
