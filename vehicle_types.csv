@@ -1,0 +1,21 @@
+﻿economy_electric,Air Conditioning,352,84,10,67,16,2,2
+economy_gas,Heated Seats,281,67,8,67,16,2,2
+economy_hybrid,Bluetooth,420,100,12,67,16,2,2
+compact_electric,Air Conditioning,386,92,11,67,16,2,2
+compact_gas,Heated Seats,315,75,9,67,16,2,2
+compact_hybrid,Heated Seats,457,109,13,67,16,2,2
+midsize_electric,Bluetooth,420,100,12,105,25,3,3
+midsize_gas,Bluetooth,352,84,10,105,25,3,3
+midsize_hybrid,Air Conditioning,491,117,14,105,25,3,3
+standard_electric,Bluetooth,457,109,13,105,25,3,3
+standard_gas,Bluetooth,386,92,11,105,25,3,3
+standard_hybrid,Heated Seats,529,126,15,105,25,3,3
+fullsize_electric,Bluetooth,491,117,14,138,33,4,4
+fullsize_gas,Bluetooth,420,100,12,138,33,4,4
+fullsize_hybrid,Air Conditioning,562,134,16,138,33,4,4
+suv_electric,Air Conditioning,529,126,15,176,42,5,5
+suv_gas,Bluetooth,457,109,13,176,42,5,5
+suv_hybrid,Bluetooth,596,142,17,176,42,5,5
+truck_electric,Bluetooth,562,134,16,176,42,5,5
+truck_gas,Air Conditioning,491,117,14,176,42,5,5
+truck_hybrid,Heated Seats,634,151,18,176,42,5,5
