@@ -90,7 +90,11 @@ class VehicleFilters extends React.Component {
             <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Any')}>Any</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Downtown Vancouver')}>Downtown Vancouver</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Midtown Vancouver')}>Midtown Vancouver</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Downtown Burnaby')}>Downtown Burnaby</Dropdown.Item>
             <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Midtown Burnaby')}>Midtown Burnaby</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Downtown Surrey')}>Downtown Surrey</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('location', 'Midtown Surrey')}>Midtown Surrey</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown className="dropdown">
