@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended : true }));
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Import Routes
-var test = require('./routes/test');
+var admin = require('./routes/admin');
 var customer = require('./routes/customer');
 var vehicle = require('./routes/vehicle');
 var reservation = require('./routes/reservation');
@@ -31,7 +31,7 @@ var HTTP_PORT = 8080;
 
 // Routes
 app.use('/', express.static(STATIC_ROOT));
-app.use('/test', test);
+app.use('/admin', admin);
 app.use('/customer', customer);
 app.use('/vehicle', vehicle);
 app.use('/reservation', reservation);

@@ -37,8 +37,10 @@ class Navigation extends React.Component {
             <Nav className="ml-auto">
               <NavDropdown title={'Change User'} id="collasible-nav-dropdown" drop="left">
                 <NavDropdown.Item as={Link} to={"/customer"}>Customer</NavDropdown.Item>
-                <NavDropdown.Divider />
                 <NavDropdown.Item as={Link} to={"/clerk"}>Clerk</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href={"https://github.com/Kevin0115/SuperRent"}>GitHub Repo</NavDropdown.Item>
+                <NavDropdown.Item href={"https://ec2.kevnchoi.com/"}>Server URL</NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
