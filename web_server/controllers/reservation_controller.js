@@ -182,3 +182,25 @@ exports.create_reservation = async (req, res) => {
     res.send({success: false, content: err.detail});
   });
 }
+
+exports.get_reservation = (req, res) => {
+  const dlicense = req.params.dlicense;
+  const conf_no = req.params.conf_no;
+
+  const reservation_query = {
+    text: `select *
+            from reservation
+            where conf_no = $1
+            and dlicense = $2`,
+    values: [conf_no, dlicense]
+  }
+
+  connection.query(reservation_query)
+  .then(queryRes => {
+    res.send({success: true, content: queryRes.rows});
+  })
+  .catch(err => {
+    console.error(err);
+    res.send({success: false, content: err.detail});
+  })
+}
