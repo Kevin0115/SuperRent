@@ -1,3 +1,109 @@
+drop table vehicle_return;
+drop table rental;
+drop table reservation;
+drop table vehicle;
+drop table vehicle_type;
+drop table customer;
+drop table branch;
+
+-- this table might not be necessary
+create table branch (
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
+    primary key (branch_location, branch_city)
+);
+
+create table customer (
+    dlicense integer not null primary key,
+    cellphone bigint not null,
+    customer_name varchar(50) not null,
+    customer_address varchar(50) not null
+);
+
+create table vehicle_type (
+    -- vtname will be something like compact_hybrid or suv_gas
+    vtname varchar(20) not null primary key,
+    -- could make features an ARRAY
+    features varchar(50) not null,
+    w_rate integer not null,
+    d_rate integer not null,
+    h_rate integer not null,
+    wi_rate integer not null,
+    di_rate integer not null,
+    hi_rate integer not null,
+    k_rate integer not null
+);
+
+create table vehicle (
+    vlicense integer not null primary key,
+    make varchar(20) not null,
+    model varchar(20) not null,
+    year integer not null,
+    color varchar(20) not null,
+    odometer integer not null,
+    status varchar(20) not null,
+    vtname varchar(20) not null,
+    -- branch location and city might not be necessary as foreign keys
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
+    foreign key (branch_location, branch_city) references branch,
+    foreign key (vtname) references vehicle_type
+);
+
+create table reservation (
+    -- This will be 7 digits
+    conf_no integer not null primary key,
+    -- I added this to be able to reference which vehicles are reserved
+    vlicense integer not null,
+    vtname varchar(20) not null,
+    dlicense integer not null,
+    from_date date not null,
+    from_time time not null,
+    to_date date not null,
+    to_time time not null,
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
+    foreign key (vlicense) references vehicle,
+    foreign key (vtname) references vehicle_type,
+    foreign key (dlicense) references customer,
+    -- Added location/city to reservation because that makes sense
+    foreign key (branch_location, branch_city) references branch
+    -- foreign key (from_date, from_time, to_date, to_time) references time_period
+);
+
+create table rental (
+    rid integer not null primary key,
+    vlicense integer not null,
+    dlicense integer not null,
+    from_date date not null,
+    from_time time not null,
+    to_date date not null,
+    to_time time not null,
+    odometer integer not null,
+    card_name varchar(50),
+    card_no bigint not null,
+    exp_date date not null,
+    conf_no integer, -- NO NEED FOR A PRIOR RESERVATION
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
+    foreign key (vlicense) references vehicle,
+    foreign key (dlicense) references customer,
+    foreign key (conf_no) references reservation,
+    -- Added location/city to reservation because that makes sense
+    foreign key (branch_location, branch_city) references branch
+    -- foreign key (from_date, from_time, to_date, to_time) references time_period
+);
+
+create table vehicle_return (
+    rid integer not null primary key,
+    return_date date not null,
+    return_time time not null,
+    odometer integer not null,
+    fulltank boolean not null,
+    tank_value integer not null,
+    foreign key (rid) references rental
+);
+
 insert into branch values ('Downtown','Vancouver');
 insert into branch values ('Midtown','Vancouver');
 insert into branch values ('Downtown','Burnaby');
@@ -220,6 +326,3 @@ insert into rental values(8888886,485830,9999996,'2019-11-27','12:00:00','2019-1
 insert into rental values(8888887,294121,9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00',200000,'Jarred Saintpierre',4922915908269540,'2025-09-10',997,'Downtown','Vancouver');
 insert into rental values(8888888,195921,9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00',200000,'Cherry Fulks',4781637900904780,'2025-09-10',998,'Downtown','Vancouver');
 insert into rental values(8888889,701740,9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00',150000,'Johnnie Jerwood',6664990725230690,'2025-09-10',999,'Downtown','Vancouver');
-
-
-
