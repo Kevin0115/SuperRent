@@ -1,4 +1,4 @@
-.reservation, .vehicles, .register {
+.reservation, .vehicles, .register, .viewcancel {
   display: flex;
   flex-direction: column;
   justify-content: center;
