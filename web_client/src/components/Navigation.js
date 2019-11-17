@@ -77,7 +77,7 @@ function Main() {
         className="nav-button"
         variant="secondary"
         size="lg"
-        as={Link} to={"/customer"}
+        as={Link} to={"/clerk"}
       >
         Clerk
       </Button>
