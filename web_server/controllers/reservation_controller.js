@@ -200,7 +200,7 @@ exports.get_reservation = (req, res) => {
     if (result.rows.length == 0) {
       res.send({success: false, content: 'No reservation found for given Confirmation ID and Driver License #'});
     } else {
-      res.send({success: true, content: result.rows});
+      res.send({success: true, content: result.rows[0]});
     }
   })
   .catch(err => {

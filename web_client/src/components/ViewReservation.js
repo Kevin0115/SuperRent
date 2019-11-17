@@ -7,6 +7,7 @@ import {
 import './Customer.css';
 
 import { API_BASE, GET } from '../utils/Const';
+import { noNullState } from '../utils/Utils';
 
 class ViewReservation extends React.Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class ViewReservation extends React.Component {
     this.state = {
       dlicense: null,
       confNo: null,
+      responseStatus: null,
+      responseContent: null,
+      display: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,12 +40,37 @@ class ViewReservation extends React.Component {
     .then(res => res.json())
     .then(json => {
       console.log(json);
-      // this.alert(json.success)
-      // this.clearForm();
+      this.setState({
+        responseStatus: json.success,
+        responseContent: json.content,
+        display: true
+      })
+      this.clearForm();
     })
     .catch(function(error) {
       console.log(error);
     })
+  }
+
+  clearForm() {
+    this.setState({
+      dlicense: null,
+      confNo: null,
+    });
+    this.messageForm.reset();
+  }
+
+  renderResponse() {
+    if (!this.state.display) return null;
+    if (this.state.responseStatus) {
+      return (
+        <div>YAY</div>
+      );
+    } else {
+      return (
+        <div>{this.state.responseContent}</div>
+      );
+    }
   }
 
   render() {
@@ -57,9 +86,10 @@ class ViewReservation extends React.Component {
             <Form.Label>Driver's License Number</Form.Label>
             <Form.Control type="number" name="dlicense" onChange={this.handleChange} placeholder="9090909" />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={this.state.dlicense == null || this.state.confNo == null}>
             Submit
           </Button>
+          {this.renderResponse()}
         </form>
       </div>
     );
