@@ -7,6 +7,7 @@ import './Customer.css';
 
 import Register from './Register';
 import Vehicles from './Vehicles';
+import Reservation from './Reservation';
 
 class Customer extends React.Component {
   render() {
@@ -17,7 +18,7 @@ class Customer extends React.Component {
             <Vehicles />
           </Tab>
           <Tab eventKey="reserve" title="Reservation">
-            <h2>TODO</h2>
+            <Reservation />
           </Tab>
           <Tab eventKey="register" title="Register">
             <Register />

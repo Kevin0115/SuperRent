@@ -80,12 +80,18 @@ exports.create_reservation = async (req, res) => {
               values: [conf_no, vlicense, vtname, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city]
             }
             connection.query(reservation_query)
-            .then(queryRes => {
-              if (queryRes.rowCount == 1) {
-                res.send({success: true, content: conf_no});
-              } else if (queryRes.rowCount < 1) {
-                res.send({success: false, content: 'Sorry, something went wrong on our end. Please try again.'});
-              }
+            .then(result => {
+              const reservation_details  = {
+                vlicense: vlicense,
+                from_date: from_date,
+                from_time: from_time,
+                to_date: to_date,
+                to_time: to_time,
+                conf_no: conf_no,
+                branch_location: branch_location,
+                branch_city: branch_city
+              };
+              res.send({success: true, content: reservation_details});
             })
             .catch(err => {
               console.error(err);
@@ -126,12 +132,18 @@ exports.create_reservation = async (req, res) => {
               values: [conf_no, vlicense, vtname, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city]
             }
             connection.query(reservation_query)
-            .then(queryRes => {
-              if (queryRes.rowCount == 1) {
-                res.send({success: true, content: conf_no});
-              } else if (queryRes.rowCount < 1) {
-                res.send({success: false, content: 'Sorry, something went wrong on our end. Please try again.'});
-              }
+            .then(result => {
+              const reservation_details  = {
+                vlicense: vlicense,
+                from_date: from_date,
+                from_time: from_time,
+                to_date: to_date,
+                to_time: to_time,
+                conf_no: conf_no,
+                branch_location: branch_location,
+                branch_city: branch_city
+              };
+              res.send({success: true, content: reservation_details});
             })
             .catch(err => {
               console.error(err);

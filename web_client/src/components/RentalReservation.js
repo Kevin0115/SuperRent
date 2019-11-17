@@ -7,6 +7,7 @@ import {
 import './Clerk.css';
 
 import { API_BASE, POST } from '../utils/Const';
+import { noNullState } from '../utils/Utils';
 
 class RentalReservation extends React.Component {
   constructor(props) {
@@ -112,8 +113,7 @@ class RentalReservation extends React.Component {
             <Form.Label>Credit Card Expiration Date</Form.Label>
             <Form.Control type="date" name="expDate" onChange={this.handleChange} />
           </Form.Group>
-          <Button variant="primary" type="submit"
-            disabled={confNo == null || dlicense == null || cardName == null || cardNo == null || expDate == null}>
+          <Button variant="primary" type="submit" disabled={!noNullState(this.state)}>
             Submit
           </Button>
         </form>

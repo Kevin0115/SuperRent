@@ -9,6 +9,9 @@ export const formatTime = (date) => {
 }
 
 export const formatLocation = (location) => {
+  if (location == null) {
+    return null;
+  }
   let string = location.toLowerCase();
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -36,4 +39,13 @@ export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
   console.log('Weekly: ' + weekly)
 
   return Math.min(hourly, daily, weekly);
+}
+
+export const noNullState = (obj) => {
+  for (let key in obj) {
+    if(obj[key] == null) {
+      return false;
+    }
+    return true;
+  }
 }
