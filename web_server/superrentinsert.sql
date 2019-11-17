@@ -188,4 +188,28 @@ insert into customer values (9999927,6958672178,'Danika Biskupski','510 Grover T
 insert into customer values (9999928,9652959722,'Chilton Ridge','587 Service Circle');
 insert into customer values (9999929,5946500687,'Philomena Pardy','71419 Dryden Circle');
 
-insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00','Midtown','Burnaby');
+-- insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00','Midtown','Burnaby');
+insert into reservation values(990,285834,'economy_electric',9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00','Downtown','Vancouver');
+insert into reservation values(991,401853,'economy_gas',9999991,'2019-11-25','12:00:00','2019-12-01','12:00:00','Downtown','Vancouver');
+insert into reservation values(992,395267,'economy_hybrid',9999992,'2019-11-25','15:00:00','2019-11-30','15:00:00','Downtown','Vancouver');
+insert into reservation values(993,977841,'compact_electric',9999993,'2019-11-25','12:00:00','2019-11-30','12:00:00','Downtown','Vancouver');
+insert into reservation values(994,323642,'compact_gas',9999994,'2019-11-27','12:00:00','2019-11-30','8:00:00','Downtown','Vancouver');
+insert into reservation values(995,134772,'compact_hybrid',9999995,'2019-11-27','12:00:00','2019-11-30','8:00:00','Downtown','Vancouver');
+insert into reservation values(996,485830,'midsize_electric',9999996,'2019-11-27','12:00:00','2019-11-30','12:00:00','Downtown','Vancouver');
+insert into reservation values(997,294121,'midsize_gas',9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00','Downtown','Vancouver');
+insert into reservation values(998,195921,'midsize_hybrid',9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00','Downtown','Vancouver');
+insert into reservation values(999,701740,'standard_electric',9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00','Downtown','Vancouver');
+
+insert into rental values(880,285834,9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00',80000,'Simonette Oleszkiewicz',9962483844913970,'2025-09-10',990,'Downtown','Vancouver');
+insert into rental values(881,401853,9999991,'2019-11-25','12:00:00','2019-12-01','12:00:00',22000,'Judah Rippen',1553608499537700,'2025-09-10',991,'Downtown','Vancouver');
+insert into rental values(882,395267,9999992,'2019-11-25','15:00:00','2019-11-30','15:00:00',35500,'Ephraim Anthon',1122277332356220,'2025-09-10',992,'Downtown','Vancouver');
+insert into rental values(883,977841,9999993,'2019-11-25','12:00:00','2019-11-30','12:00:00',35500,'Gavrielle Belfit',2414390029457650,'2025-09-10',993,'Downtown','Vancouver');
+insert into rental values(884,323642,9999994,'2019-11-27','12:00:00','2019-11-30','8:00:00',35500,'Vanni Audsley',4983242103882110,'2025-09-10',994,'Downtown','Vancouver');
+insert into rental values(885,134772,9999995,'2019-11-27','12:00:00','2019-11-30','8:00:00',200000,'Jeniece Napolione',4237462063451900,'2025-09-10',995,'Downtown','Vancouver');
+insert into rental values(886,485830,9999996,'2019-11-27','12:00:00','2019-11-30','12:00:00',200000,'Gerry Skedgell',5636912791405050,'2025-09-10',996,'Downtown','Vancouver');
+insert into rental values(887,294121,9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00',200000,'Jarred Saintpierre',4922915908269540,'2025-09-10',997,'Downtown','Vancouver');
+insert into rental values(888,195921,9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00',200000,'Cherry Fulks',4781637900904780,'2025-09-10',998,'Downtown','Vancouver');
+insert into rental values(889,701740,9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00',150000,'Johnnie Jerwood',6664990725230690,'2025-09-10',999,'Downtown','Vancouver');
+
+
+
