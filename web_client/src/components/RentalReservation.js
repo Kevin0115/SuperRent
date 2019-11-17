@@ -87,7 +87,6 @@ class RentalReservation extends React.Component {
   }
 
   render() {
-    const { cardNo, confNo, cardName, expDate, dlicense } = this.state;
     return(
       <div className="rental-reservation">
         <h2>Book a Rental for a Prior Reservation</h2>

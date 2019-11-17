@@ -192,13 +192,13 @@ class Reservation extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
           </div>    
-          <Button variant="primary" type="submit" disabled={!noNullState(this.state) || this.state.size == '' || this.state.type == ''}>
+          <Button variant="primary" type="submit" disabled={!noNullState(this.state) || this.state.size === '' || this.state.type === ''}>
             Submit
           </Button>
         </form>
         <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage} {this.state.alertColor == 'danger' ? null : this.state.confNo}</p>
+          <p>{this.state.alertMessage} {this.state.alertColor === 'danger' ? null : this.state.confNo}</p>
         </Alert>
       </div>
     );
