@@ -151,6 +151,11 @@ exports.create_rental_no_reservation = (req, res) => {
     res.send({success: false, content: 'Sorry, the rental interval you requested is invalid.'});
     return; // Nothing more to do here.
   }
+  // Validate that the starting time for the rental is not in the past
+  if (moment(from_date).isBefore(moment(), 'day')) {
+    res.send({success: false, content: 'Sorry, you cannot book a rental in the past'});
+    return; // Nothing left to do here.
+  }
 
   // First verify that this customer exists in the database
   const customer_query = {

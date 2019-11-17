@@ -26,7 +26,6 @@ class RentalReservation extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state);
     e.preventDefault();
     const { cardNo, cardName, expDate, confNo, dlicense } = this.state;
     fetch(API_BASE + 'rental/' + confNo, {

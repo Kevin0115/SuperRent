@@ -46,6 +46,6 @@ export const noNullState = (obj) => {
     if(obj[key] == null) {
       return false;
     }
-    return true;
   }
+  return true;
 }

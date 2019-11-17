@@ -26,6 +26,7 @@ class Vehicles extends React.Component {
         toDate: formatDate(new Date()),
         toTime: formatTime(new Date()),
       },
+      message: null,
       vehicles: [],
       showModal: false,
       showAlert: false,
@@ -78,7 +79,13 @@ class Vehicles extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      this.setState({vehicles: json.content})
+      if (!json.success) {
+        this.setState({vehicles: [], message: json.content});
+      } else if (json.success && json.content.length < 1) {
+        this.setState({vehicles: [], message: 'Sorry, we did not find any results. Try changing your filters.'});
+      } else {
+        this.setState({vehicles: json.content});
+      }
     })
     .catch(function(error) {
       console.log(error);
@@ -166,7 +173,7 @@ class Vehicles extends React.Component {
           alertColor: 'success',
           showAlert: true,
           showModal: false,
-          confNo: json.content,
+          confNo: json.content.conf_no,
         },
         this.getVehicles)
       } else {
@@ -191,7 +198,7 @@ class Vehicles extends React.Component {
       return (
         <div>
           <h3 className="sorry">
-            Sorry, we didn't find any results. Try changing your filters.
+            {this.state.message}
           </h3>
         </div>
       );

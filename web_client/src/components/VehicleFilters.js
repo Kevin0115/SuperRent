@@ -63,9 +63,9 @@ class VehicleFilters extends React.Component {
             <Dropdown.Divider />
             <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Economy')}>Economy</Dropdown.Item>
             <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Compact')}>Compact</Dropdown.Item>
-            <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Midsize')}>Mid-size</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Midsize')}>Midsize</Dropdown.Item>
             <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Standard')}>Standard</Dropdown.Item>
-            <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Fullsize')}>Full-size</Dropdown.Item>
+            <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Fullsize')}>Fullsize</Dropdown.Item>
             <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'SUV')}>SUV</Dropdown.Item>
             <Dropdown.Item onSelect={() => this.handlePickerChange('carSize', 'Truck')}>Truck</Dropdown.Item>
           </Dropdown.Menu>
