@@ -199,6 +199,16 @@ insert into reservation values(996,485830,'midsize_electric',9999996,'2019-11-27
 insert into reservation values(997,294121,'midsize_gas',9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00','Downtown','Vancouver');
 insert into reservation values(998,195921,'midsize_hybrid',9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00','Downtown','Vancouver');
 insert into reservation values(999,701740,'standard_electric',9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00','Downtown','Vancouver');
+insert into reservation values(910,575370,'standard_gas',9999910,'2019-11-27','16:00:00','2019-11-29','8:00:00','Downtown','Vancouver');
+insert into reservation values(911,610034,'standard_hybrid',9999911,'2019-11-27','16:00:00','2019-11-29','8:00:00','Downtown','Vancouver');
+insert into reservation values(912,549587,'fullsize_electric',9999912,'2019-11-27','16:00:00','2019-11-29','8:00:00','Downtown','Vancouver');
+insert into reservation values(913,385674,'fullsize_gas',9999913,'2019-11-28','16:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(914,715498,'fullsize_hybrid',9999914,'2019-11-28','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(915,500207,'suv_electric',9999915,'2019-11-28','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(916,686376,'suv_gas',9999916,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(917,801741,'suv_hybrid',9999917,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(918,603872,'truck_electric',9999918,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
+insert into reservation values(919,621265,'truck_gas',9999918,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
 
 insert into rental values(880,285834,9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00',80000,'Simonette Oleszkiewicz',9962483844913970,'2025-09-10',990,'Downtown','Vancouver');
 insert into rental values(881,401853,9999991,'2019-11-25','12:00:00','2019-12-01','12:00:00',22000,'Judah Rippen',1553608499537700,'2025-09-10',991,'Downtown','Vancouver');
