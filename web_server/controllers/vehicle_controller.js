@@ -27,6 +27,8 @@ exports.get_vehicles_by_param = (req, res) => {
   }
 
   // Check we are not viewing vehicles in the past - we allow from only today onwards
+  console.log(moment(from_date).format('YYYY-MM-DD'))
+  console.log(moment().format('YYYY-MM-DD'))
   if (moment(from_date).isBefore(moment(), 'day')) {
     res.send({success: false, content: 'Sorry, you cannot enter a time in the past as a starting period!'});
     return; // Nothing left to do here.
