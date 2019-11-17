@@ -9,7 +9,7 @@ import {
 import './Vehicles.css';
 
 import DatetimeRangePicker from 'react-datetime-range-picker';
-import { formatDate, formatTime, calculatePrice } from '../utils/Utils';
+import { formatDate, formatTime, calculatePrice, capitalizeWord } from '../utils/Utils';
 
 class ReservationModal extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class ReservationModal extends React.Component {
                 </Card.Text>
               </Card.Body>
             </Card>
-            <h5>Color: {color}</h5>
+            <h5>Color: {capitalizeWord(color)}</h5>
             <h5>Features: {features}</h5>
             <h5>Rates (Including Insurance):</h5>
             <p>Hourly: ${h_rate + hi_rate}/hr</p>

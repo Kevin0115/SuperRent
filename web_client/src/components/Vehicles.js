@@ -11,7 +11,7 @@ import { API_BASE, POST } from '../utils/Const';
 import VehicleFilters from './VehicleFilters';
 import ReservationModal from './ReservationModal';
 
-import { formatDate, formatTime } from '../utils/Utils';
+import { formatDate, formatTime, formatType } from '../utils/Utils';
 
 class Vehicles extends React.Component {
   constructor(props) {
@@ -206,11 +206,11 @@ class Vehicles extends React.Component {
     return this.state.vehicles.map((item, index) => {
       return(
         <Card className="vehicle-card" key={index}>
-          <Card.Header as="h5">Featured</Card.Header>
+          <Card.Header as="h5">{item.make + ' ' + item.model}</Card.Header>
           <Card.Body>
-            <Card.Title>{item.year + ' ' + item.make + ' ' + item.model}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{formatType(item.vtname)}</Card.Subtitle>
             <Card.Text>
-              Location: {item.branch_location + ' ' + item.branch_city}
+              {item.branch_location + ' ' + item.branch_city}
             </Card.Text>
             <Button variant="primary" onClick={() => this.handleOpenModal(item)}>Rent me Now!</Button>
           </Card.Body>

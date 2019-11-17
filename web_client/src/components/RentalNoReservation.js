@@ -7,7 +7,7 @@ import {
 import './Clerk.css';
 
 import { API_BASE, POST } from '../utils/Const';
-import { formatLocation, noNullState } from '../utils/Utils';
+import { capitalizeWord, noNullState } from '../utils/Utils';
 
 class RentalNoReservation extends React.Component {
   constructor(props) {
@@ -45,8 +45,8 @@ class RentalNoReservation extends React.Component {
         dlicense: dlicense,
         to_date: toDate,
         to_time: toTime,
-        branch_location: formatLocation(branchLocation),
-        branch_city: formatLocation(branchCity),
+        branch_location: capitalizeWord(branchLocation),
+        branch_city: capitalizeWord(branchCity),
         vtname: vtname.toLowerCase()
       })
     })

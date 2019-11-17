@@ -8,12 +8,22 @@ export const formatTime = (date) => {
   return moment(date).format('hh:mm:ss');
 }
 
-export const formatLocation = (location) => {
-  if (location == null) {
+export const capitalizeWord = (word) => {
+  if (word == null) {
     return null;
   }
-  let string = location.toLowerCase();
+  let string = word.toLowerCase();
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export const formatType = (vtname) => {
+  if (vtname == null) {
+    return null;
+  }
+  let type = vtname.toLowerCase().split('_')[1];
+  let size = vtname.toLowerCase().split('_')[0];
+  
+  return capitalizeWord(type) + ' ' + capitalizeWord(size);
 }
 
 export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
