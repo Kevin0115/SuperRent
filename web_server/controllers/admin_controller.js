@@ -89,6 +89,8 @@ create table rental (
     conf_no integer, -- NO NEED FOR A PRIOR RESERVATION
     branch_location varchar(20) not null,
     branch_city varchar(20) not null,
+    -- This will help track the status (active, complete) of a rental
+    status varchar(20) not null,
     foreign key (vlicense) references vehicle,
     foreign key (dlicense) references customer,
     foreign key (conf_no) references reservation,
@@ -104,7 +106,11 @@ create table vehicle_return (
     odometer integer not null,
     fulltank boolean not null,
     tank_value integer not null,
-    foreign key (rid) references rental
+    branch_location varchar(20) not null,
+    branch_city varchar(20) not null,
+    foreign key (rid) references rental,
+    -- Added location/city to reservation because that makes sense
+    foreign key (branch_location, branch_city) references branch
 );
 
 insert into branch values ('Downtown','Vancouver');
@@ -319,16 +325,16 @@ insert into reservation values(9999917,801741,'suv_hybrid',9999917,'2019-12-02',
 insert into reservation values(9999918,603872,'truck_electric',9999918,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
 insert into reservation values(9999919,621265,'truck_gas',9999918,'2019-12-02','8:00:00','2019-12-12','8:00:00','Downtown','Vancouver');
 
-insert into rental values(8888880,285834,9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00',80000,'Simonette Oleszkiewicz',9962483844913970,'2025-09-10',9999990,'Downtown','Vancouver');
-insert into rental values(8888881,401853,9999991,'2019-11-25','12:00:00','2019-12-01','12:00:00',22000,'Judah Rippen',1553608499537700,'2025-09-10',9999991,'Downtown','Vancouver');
-insert into rental values(8888882,395267,9999992,'2019-11-25','15:00:00','2019-11-30','15:00:00',35500,'Ephraim Anthon',1122277332356220,'2025-09-10',9999992,'Downtown','Vancouver');
-insert into rental values(8888883,977841,9999993,'2019-11-25','12:00:00','2019-11-30','12:00:00',35500,'Gavrielle Belfit',2414390029457650,'2025-09-10',9999993,'Downtown','Vancouver');
-insert into rental values(8888884,323642,9999994,'2019-11-27','12:00:00','2019-11-30','8:00:00',35500,'Vanni Audsley',4983242103882110,'2025-09-10',9999994,'Downtown','Vancouver');
-insert into rental values(8888885,134772,9999995,'2019-11-27','12:00:00','2019-11-30','8:00:00',200000,'Jeniece Napolione',4237462063451900,'2025-09-10',9999995,'Downtown','Vancouver');
-insert into rental values(8888886,485830,9999996,'2019-11-27','12:00:00','2019-11-30','12:00:00',200000,'Gerry Skedgell',5636912791405050,'2025-09-10',9999996,'Downtown','Vancouver');
-insert into rental values(8888887,294121,9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00',200000,'Jarred Saintpierre',4922915908269540,'2025-09-10',9999997,'Downtown','Vancouver');
-insert into rental values(8888888,195921,9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00',200000,'Cherry Fulks',4781637900904780,'2025-09-10',9999998,'Downtown','Vancouver');
-insert into rental values(8888889,701740,9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00',150000,'Johnnie Jerwood',6664990725230690,'2025-09-10',9999999,'Downtown','Vancouver');
+insert into rental values(8888880,285834,9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00',80000,'Simonette Oleszkiewicz',9962483844913970,'2025-09-10',9999990,'Downtown','Vancouver','active');
+insert into rental values(8888881,401853,9999991,'2019-11-25','12:00:00','2019-12-01','12:00:00',22000,'Judah Rippen',1553608499537700,'2025-09-10',9999991,'Downtown','Vancouver','active');
+insert into rental values(8888882,395267,9999992,'2019-11-25','15:00:00','2019-11-30','15:00:00',35500,'Ephraim Anthon',1122277332356220,'2025-09-10',9999992,'Downtown','Vancouver','active');
+insert into rental values(8888883,977841,9999993,'2019-11-25','12:00:00','2019-11-30','12:00:00',35500,'Gavrielle Belfit',2414390029457650,'2025-09-10',9999993,'Downtown','Vancouver','active');
+insert into rental values(8888884,323642,9999994,'2019-11-27','12:00:00','2019-11-30','8:00:00',35500,'Vanni Audsley',4983242103882110,'2025-09-10',9999994,'Downtown','Vancouver','active');
+insert into rental values(8888885,134772,9999995,'2019-11-27','12:00:00','2019-11-30','8:00:00',200000,'Jeniece Napolione',4237462063451900,'2025-09-10',9999995,'Downtown','Vancouver','active');
+insert into rental values(8888886,485830,9999996,'2019-11-27','12:00:00','2019-11-30','12:00:00',200000,'Gerry Skedgell',5636912791405050,'2025-09-10',9999996,'Downtown','Vancouver','active');
+insert into rental values(8888887,294121,9999997,'2019-11-27','8:00:00','2019-12-05','12:00:00',200000,'Jarred Saintpierre',4922915908269540,'2025-09-10',9999997,'Downtown','Vancouver','active');
+insert into rental values(8888888,195921,9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00',200000,'Cherry Fulks',4781637900904780,'2025-09-10',9999998,'Downtown','Vancouver','active');
+insert into rental values(8888889,701740,9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00',150000,'Johnnie Jerwood',6664990725230690,'2025-09-10',9999999,'Downtown','Vancouver','complete');
 
 `
 

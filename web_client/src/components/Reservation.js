@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import './Customer.css';
 
-import { formatDate, formatTime, noNullState } from '../utils/Utils';
+import { formatDate, formatTime, noNullState, calculatePrice, formatDateTime } from '../utils/Utils';
 import { API_BASE, POST } from '../utils/Const';
 import DatetimeRangePicker from 'react-datetime-range-picker';
 
@@ -97,11 +97,14 @@ class Reservation extends React.Component {
   }
 
   alert(success, content) {
+    const { fromDate, fromTime, toDate, toTime } = this.state;
     if (success) {
       this.setState({
         showAlert: true,
         alertTitle: 'All Done!',
-        alertMessage: 'Your reservation has been successfully created! Confirmation #',
+        alertMessage: 'Your reservation has been successfully created! Confirmation # '
+                        + content.conf_no + '\n Estimated Price: $'
+                        + calculatePrice(formatDateTime(fromDate, fromTime), formatDateTime(toDate, toTime), content.rate.hourly, content.rate.daily, content.rate.weekly),
         alertColor: 'success',
         confNo: content.conf_no,
       });
@@ -195,7 +198,7 @@ class Reservation extends React.Component {
         </form>
         <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage} {this.state.alertColor === 'danger' ? null : this.state.confNo}</p>
+          <p>{this.state.alertMessage}</p>
         </Alert>
       </div>
     );
