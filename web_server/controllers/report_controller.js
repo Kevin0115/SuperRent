@@ -5,7 +5,7 @@ exports.get_rental = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
     const time = moment().format('HH:mm:ss');
 
-    // use this value if you want to test
+    // use these values if you want to test
     // const day = "2019-11-25";
     // const time = "08:00:00";
     
@@ -38,7 +38,7 @@ exports.get_rental_for_branch = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
     const time = moment().format('HH:mm:ss');
 
-    // use this value if you want to test
+    // use these values if you want to test
     // const day = "2019-11-25";
     // const time = "08:00:00";
     // const branch_l = "Downtown";
@@ -71,6 +71,10 @@ exports.get_rental_for_branch = (req, res) => {
 exports.get_return = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
     const time = moment().format('HH:mm:ss');
+
+    // use these values if you want to test
+    // const day = "2019-11-30";
+    // const time = "16:00:00";
     
     const return_query = {
       text: `select *
@@ -99,6 +103,12 @@ exports.get_return_for_branch = (req, res) => {
     const branch_c = reg.params.branch_city;
     const day = moment().format('YYYY-MM-DD');
     const time = moment().format('HH:mm:ss');
+
+    // use thess values if you want to test
+    // const day = "2019-11-30";
+    // const time = "16:00:00";
+    // const branch_l = "Downtown";
+    // const branch_c = "Vancouver";
     
     const return_query = {
       text: `select *
