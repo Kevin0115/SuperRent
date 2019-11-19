@@ -24,6 +24,7 @@ var customer = require('./routes/customer');
 var vehicle = require('./routes/vehicle');
 var reservation = require('./routes/reservation');
 var rental = require('./routes/rental');
+var vehicle_return = require('./routes/vehicle_return');
 var report = require('./routes/report');
 
 // Declare application parameters
@@ -37,6 +38,7 @@ app.use('/customer', customer);
 app.use('/vehicle', vehicle);
 app.use('/reservation', reservation);
 app.use('/rental', rental);
+app.use('/return', vehicle_return);
 app.use('/report', report);
 
 // Server

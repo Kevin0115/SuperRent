@@ -60,9 +60,10 @@ exports.create_reservation = async (req, res) => {
             // Look for the first available vehicle per the request vtname and branch
             // By available, we mean it doesn't clash with any other reservations during that interval
             const vehicle_query = {
-              text: `select v.vlicense
-                      from vehicle v
+              text: `select v.vlicense, vt.h_rate, vt.hi_rate, vt.d_rate, vt.di_rate, vt.w_rate, vt.wi_rate
+                      from vehicle v, vehicle_type vt
                       where v.vtname like $1
+                      and vt.vtname like v.vtname
                       and v.branch_location like $6
                       and v.branch_city like $7
                       and not exists(
@@ -85,7 +86,13 @@ exports.create_reservation = async (req, res) => {
               if (result.rows.length == 0) {
                 res.send({success: false, content: 'No vehicles for selected vehicle type found at this location during reservation interval.'});
               } else {
-                const vlicense = result.rows[0].vlicense;
+                const row = result.rows[0];
+                const rate = {
+                  hourly: row.h_rate + row.hi_rate,
+                  daily: row.d_rate + row.di_rate,
+                  weekly: row.w_rate + row.wi_rate
+                };
+                const vlicense = row.vlicense;
                 // We've found a suitable vehicle. Make a reservation for it
                 const reservation_query = {
                   text: `insert into reservation
@@ -102,7 +109,8 @@ exports.create_reservation = async (req, res) => {
                     to_time: to_time,
                     conf_no: conf_no,
                     branch_location: branch_location,
-                    branch_city: branch_city
+                    branch_city: branch_city,
+                    rate: rate,
                   };
                   res.send({success: true, content: reservation_details});
                 })

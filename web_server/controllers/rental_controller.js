@@ -3,6 +3,7 @@ var moment = require('moment');
 
 const MINUTES_IN_HOUR = 3600;
 const MINUTES_IN_WEEK = 2419200;
+const ACTIVE_STATUS = 'active';
 
 /**
  * Customer has an existing reservation
@@ -80,9 +81,9 @@ exports.create_rental_with_reservation = (req, res) => {
           // All clear to book rental
           const rental_query = {
             text: `insert into rental
-                  values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
+                  values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
             values: [rid,vlicense,dlicense,from_date,from_time,to_date,to_time,
-                      odometer,card_name,card_no,exp_date,conf_no,branch_location,branch_city]
+                      odometer,card_name,card_no,exp_date,conf_no,branch_location,branch_city,ACTIVE_STATUS]
           }
 
           connection.query(rental_query)

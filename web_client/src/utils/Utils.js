@@ -8,6 +8,10 @@ export const formatTime = (date) => {
   return moment(date).format('hh:mm:ss');
 }
 
+export const formatDateTime = (date, time) => {
+  return moment(date + 'T' + time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
+}
+
 export const capitalizeWord = (word) => {
   if (word == null) {
     return null;
