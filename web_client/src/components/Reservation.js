@@ -39,7 +39,6 @@ class Reservation extends React.Component {
   }
 
   handleChange(e) {
-    console.log(this.state);
     this.setState({[e.target.name]: e.target.value});
   }
 
@@ -48,7 +47,6 @@ class Reservation extends React.Component {
   }
 
   updateVtname() {
-    console.log(this.state);
     if (this.state.size == null || this.state.type == null) {
       return;
     }
@@ -58,7 +56,6 @@ class Reservation extends React.Component {
   }
 
   handleIntervalChange(e) {
-    console.log(this.state);
     this.setState({
       fromDate: formatDate(e.start),
       fromTime: formatTime(e.start),
