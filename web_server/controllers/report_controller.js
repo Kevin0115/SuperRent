@@ -3,18 +3,15 @@ var moment = require('moment');
 
 exports.get_rental = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
-    const time = moment().format('HH:mm:ss');
 
     // use these values if you want to test
     // const day = "2019-11-25";
-    // const time = "08:00:00";
     
     const rental_query = {
       text: `select rid, vlicense, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city
               from rental r
-              where r.from_date = $1::date
-              and r.from_time >= $2::time`,
-      values: [day, time]
+              where r.from_date = $1::date`,
+      values: [day]
     }
   
     connection.query(rental_query)
@@ -23,7 +20,7 @@ exports.get_rental = (req, res) => {
           console.log(result);
         res.send({success: false, content: 'There is no data for selected report. No rentals occured today.'});
       } else {
-        res.send({success: true, content: result});
+        res.send({success: true, content: result.rows});
       }
     })
     .catch(err => {
@@ -36,11 +33,9 @@ exports.get_rental_for_branch = (req, res) => {
     const branch_l = req.params.branch_location;
     const branch_c = reg.params.branch_city;
     const day = moment().format('YYYY-MM-DD');
-    const time = moment().format('HH:mm:ss');
 
     // use these values if you want to test
     // const day = "2019-11-25";
-    // const time = "08:00:00";
     // const branch_l = "Downtown";
     // const branch_c = "Vancouver";
     
@@ -48,10 +43,9 @@ exports.get_rental_for_branch = (req, res) => {
       text: `select rid, vlicense, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city
               from rental r
               where r.from_date = $1::date
-              and r.from_time >= $2::time
-              and r.branch_location = $3
-              and r.branch_city = $4`,
-      values: [day, time, branch_l, branch_c]
+              and r.branch_location = $2
+              and r.branch_city = $3`,
+      values: [day, branch_l, branch_c]
     }
   
     connection.query(rental_query)
@@ -59,7 +53,7 @@ exports.get_rental_for_branch = (req, res) => {
       if (result.rows.length == 0) {
         res.send({success: false, content: 'There is no data for selected report. No rentals occured today for provided branch.'});
       } else {
-        res.send({success: true, content: result});
+        res.send({success: true, content: result.rows});
       }
     })
     .catch(err => {
@@ -70,18 +64,15 @@ exports.get_rental_for_branch = (req, res) => {
 
 exports.get_return = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
-    const time = moment().format('HH:mm:ss');
 
     // use these values if you want to test
     // const day = "2019-11-30";
-    // const time = "16:00:00";
     
     const return_query = {
       text: `select *
               from vehicle_return r
-              where r.return_date = $1::date
-              and r.return_time <= $2::time`,
-      values: [day, time]
+              where r.return_date = $1::date`,
+      values: [day]
     }
   
     connection.query(return_query)
@@ -89,7 +80,7 @@ exports.get_return = (req, res) => {
       if (result.rows.length == 0) {
         res.send({success: false, content: 'There is no data for selected report. No returns occured today.'});
       } else {
-        res.send({success: true, content: result});
+        res.send({success: true, content: result.rows});
       }
     })
     .catch(err => {
@@ -102,11 +93,9 @@ exports.get_return_for_branch = (req, res) => {
     const branch_l = req.params.branch_location;
     const branch_c = reg.params.branch_city;
     const day = moment().format('YYYY-MM-DD');
-    const time = moment().format('HH:mm:ss');
 
     // use thess values if you want to test
     // const day = "2019-11-30";
-    // const time = "16:00:00";
     // const branch_l = "Downtown";
     // const branch_c = "Vancouver";
     
@@ -114,10 +103,9 @@ exports.get_return_for_branch = (req, res) => {
       text: `select *
               from vehicle_return r
               where r.return_date = $1::date
-              and r.return_time <= $2::time
-              and r.branch_location = $3
-              and r.branch_city = $4`,
-      values: [day, time, branch_l, branch_c]
+              and r.branch_location = $2
+              and r.branch_city = $3`,
+      values: [day, branch_l, branch_c]
     }
   
     connection.query(return_query)
@@ -125,7 +113,7 @@ exports.get_return_for_branch = (req, res) => {
       if (result.rows.length == 0) {
         res.send({success: false, content: 'There is no data for selected report. No rentals occured today for the specified branch.'});
       } else {
-        res.send({success: true, content: result});
+        res.send({success: true, content: result.rows});
       }
     })
     .catch(err => {
