@@ -70,8 +70,6 @@ exports.create_return = (req, res) => {
         .then(result => {
           // Start calculating the final price
           const from_timestamp = moment(from_date + 'T' + from_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
-          const return_timestamp = moment(return_date + 'T' + return_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
-          console.log(return_timestamp + '\n\n' + from_timestamp)
           let late_fee = 0;
           let cost_struct;
           if (moment(return_date).isAfter(to_date)) {
@@ -80,7 +78,7 @@ exports.create_return = (req, res) => {
             late_fee = 50 * diff;
           }
           // Some calculation to find the minimum cost for our customers
-          const interval_hours = return_timestamp.diff(from_timestamp, 'hours');
+          const interval_hours = moment().diff(from_timestamp, 'hours');
           const interval_days = interval_hours / 24;
           const interval_weeks = interval_days / 7;
           // We set the costs to MAX to ensure we take the minimum
@@ -98,8 +96,8 @@ exports.create_return = (req, res) => {
           if (interval_weeks >= 1) {
             weekly = interval_weeks * weekly_rate;
           }
-          const base_price = Math.min(hourly, daily, weekly);
-          const total_price = base_price + late_fee;
+          const base_price = parseFloat(Math.min(hourly, daily, weekly)).toFixed(2);
+          const total_price = parseFloat(base_price + late_fee).toFixed(2);
           // Prepare the cost structure so the customer knows how it was calculated.
           switch (base_price) {
             case (hourly):
@@ -147,7 +145,8 @@ exports.create_return = (req, res) => {
             content: {
               rid: rid,
               cost_struct: cost_struct,
-              return_datetime: return_timestamp,
+              from_datetime: from_timestamp,
+              return_datetime: moment(),
             }
           })
         })

@@ -72,7 +72,7 @@ class RentalReservation extends React.Component {
         alertColor: 'danger'
       });
     }
-    setTimeout((() => this.setState({showAlert: false})), 3000);
+    setTimeout((() => this.setState({showAlert: false})), 10000);
   }
 
   clearForm() {

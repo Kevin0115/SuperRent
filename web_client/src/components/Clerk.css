@@ -1,4 +1,4 @@
-.console, .rental-reservation {
+.console, .rental-reservation, .return {
   display: flex;
   flex-direction: column;
   justify-content: center;
