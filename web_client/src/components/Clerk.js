@@ -7,6 +7,7 @@ import './Clerk.css';
 
 import RentalReservation from './RentalReservation';
 import RentalNoReservation from './RentalNoReservation';
+import Return from './Return';
 import Console from './Console';
 
 class Clerk extends React.Component {
@@ -21,7 +22,7 @@ class Clerk extends React.Component {
             <RentalReservation />
           </Tab>
           <Tab eventKey="return" title="Return">
-            <h2>TODO</h2>
+            <Return />
           </Tab>
           <Tab eventKey="report" title="Report">
             <h2>TODO</h2>

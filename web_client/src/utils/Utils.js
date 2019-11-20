@@ -31,8 +31,8 @@ export const formatType = (vtname) => {
 }
 
 export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
-  const intervalSeconds = moment(to).unix() - moment(from).unix();
-  const intervalHours = intervalSeconds / 3600;
+  const intervalHours = moment(to).diff(moment(from), 'hours');
+  // const intervalHours = intervalSeconds / 3600;
   const intervalDays = intervalHours / 24;
   const intervalWeeks = intervalDays / 7;
   let hourly = Number.MAX_SAFE_INTEGER;
@@ -52,7 +52,7 @@ export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
   console.log('Daily: ' + daily)
   console.log('Weekly: ' + weekly)
 
-  return Math.min(hourly, daily, weekly);
+  return parseFloat(Math.min(hourly, daily, weekly)).toFixed(2);
 }
 
 export const noNullState = (obj) => {
