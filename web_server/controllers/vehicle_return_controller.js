@@ -36,6 +36,8 @@ exports.create_return = (req, res) => {
       res.send({success: false, content: 'Sorry, the returned vehicle is not the correct vehicle for this rental'});
     } else if (result.rows[0].dlicense != dlicense) {
       res.send({success: false, content: 'Sorry, the entered customer is not the owner of this rental.'});
+    } else if (result.rows[0].branch_location != branch_location || result.rows[0].branch_city != branch_city) {
+      res.send({success: false, content: 'Sorry, this return must be completed at the original branch.'});
     } else {
       // Everything seems legitimate, so continue with the process
       // For now, I'm going to save some important values from this query for the price calculation

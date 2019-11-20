@@ -52,7 +52,7 @@ class Return extends React.Component {
     .then(json => {
       console.log(json);
       this.alert(json.success, json.content);
-      // this.clearForm();
+      this.clearForm();
     })
     .catch(function(error) {
       console.log(error);
