@@ -1,43 +1,70 @@
 const connection = require('../config/db_config');
 var moment = require('moment');
 
-exports.get_rental = (req, res) => {
+exports.get_rental = async (req, res) => {
     const day = moment().format('YYYY-MM-DD');
 
-    // use these values if you want to test
-    // const day = "2019-11-25";
+    const rentals_per_category_query = {
+      text: `select v.vtname, count(*) as quantity
+              from rental r, vehicle v
+              where r.vlicense = v.vlicense
+              and r.from_date = $1::date
+              group by v.vtname;`,
+      values: [day]
+    }
+
+    const total_rentals_count_query = {
+      text: `select count(*) as total_rentals_today
+              from rental
+              where from_date = $1::date`,
+      values: [day]
+    }
+
+    const rentals_per_branch_query = {
+      text: `select branch_location, branch_city, count(*) as quantity
+              from rental
+              where from_date = $1::date
+              group by branch_location, branch_city;`,
+      values: [day]
+    }
     
-    const rental_query = {
+    const all_rentals_query = {
       text: `select rid, vlicense, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city
               from rental r
-              where r.from_date = $1::date`,
+              where r.from_date = $1::date
+              order by branch_location, branch_city`,
       values: [day]
     }
   
-    connection.query(rental_query)
-    .then(result => {
-      if (result.rows.length == 0) {
-          console.log(result);
-        res.send({success: false, content: 'There is no data for selected report. No rentals occured today.'});
-      } else {
-        res.send({success: true, content: result.rows});
+    let rentals_per_branch_result = await connection.query(rentals_per_branch_query);
+    let rentals_per_category_result = await connection.query(rentals_per_category_query);
+    let total_rentals_result = await connection.query(total_rentals_count_query);
+    let all_rentals_result = await connection.query(all_rentals_query);
+
+    res.send({
+      success: true,
+      content: {
+        total_rentals_count: total_rentals_result.rows,
+        rentals_per_branch: rentals_per_branch_result.rows,
+        rentals_per_category: rentals_per_category_result.rows,
+        all_rentals: all_rentals_result.rows
       }
-    })
-    .catch(err => {
-      console.error(err);
-      res.send({success: false, content: err.detail});
-    })
+    });
   }
 
 exports.get_rental_for_branch = (req, res) => {
     const branch_l = req.params.branch_location;
-    const branch_c = reg.params.branch_city;
+    const branch_c = req.params.branch_city;
     const day = moment().format('YYYY-MM-DD');
 
-    // use these values if you want to test
-    // const day = "2019-11-25";
-    // const branch_l = "Downtown";
-    // const branch_c = "Vancouver";
+    
+    // const branch_exists_query = {
+    //   text: `select *
+    //           from branch
+    //           where branch_location like $1
+    //           and branch_city like $2`,
+              
+    // }
     
     const rental_query = {
       text: `select rid, vlicense, dlicense, from_date, from_time, to_date, to_time, branch_location, branch_city
@@ -64,9 +91,6 @@ exports.get_rental_for_branch = (req, res) => {
 
 exports.get_return = (req, res) => {
     const day = moment().format('YYYY-MM-DD');
-
-    // use these values if you want to test
-    // const day = "2019-11-30";
     
     const return_query = {
       text: `select *
@@ -91,13 +115,8 @@ exports.get_return = (req, res) => {
 
 exports.get_return_for_branch = (req, res) => {
     const branch_l = req.params.branch_location;
-    const branch_c = reg.params.branch_city;
+    const branch_c = req.params.branch_city;
     const day = moment().format('YYYY-MM-DD');
-
-    // use thess values if you want to test
-    // const day = "2019-11-30";
-    // const branch_l = "Downtown";
-    // const branch_c = "Vancouver";
     
     const return_query = {
       text: `select *

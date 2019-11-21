@@ -1,4 +1,4 @@
-.console, .rental-reservation, .return {
+.console, .rental-reservation, .return, .report {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,4 +25,9 @@
 .alert {
   position: fixed;
   top: 24px;
+}
+
+.table {
+  margin: 32px;
+  width: 80vw;
 }

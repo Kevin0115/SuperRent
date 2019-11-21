@@ -9,6 +9,7 @@ import RentalReservation from './RentalReservation';
 import RentalNoReservation from './RentalNoReservation';
 import Return from './Return';
 import Console from './Console';
+import ReportAll from './ReportAll';
 
 class Clerk extends React.Component {
   render() {
@@ -24,8 +25,11 @@ class Clerk extends React.Component {
           <Tab eventKey="return" title="Return">
             <Return />
           </Tab>
-          <Tab eventKey="report" title="Report">
-            <h2>TODO</h2>
+          <Tab eventKey="report-all" title="Reports (All)">
+            <ReportAll />
+          </Tab>
+          <Tab eventKey="report-branch" title="Reports (Branch)">
+            <ReportAll />
           </Tab>
           <Tab eventKey="console" title="Console">
             <Console />

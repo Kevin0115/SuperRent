@@ -30,6 +30,16 @@ export const formatType = (vtname) => {
   return capitalizeWord(type) + ' ' + capitalizeWord(size);
 }
 
+export const formatColumnHeader = (header) => {
+  if (header == null) {
+    return null;
+  }
+  let first = header.toLowerCase().split('_')[0];
+  let second = header.toLowerCase().split('_')[1];
+  
+  return capitalizeWord(first) + ' ' + capitalizeWord(second);
+}
+
 export const calculatePrice = (from, to, hourlyRate, dailyRate, weeklyRate) => {
   const intervalHours = moment(to).diff(moment(from), 'hours');
   // const intervalHours = intervalSeconds / 3600;
@@ -62,4 +72,18 @@ export const noNullState = (obj) => {
     }
   }
   return true;
+}
+
+export const processColumns = (data) => {
+  let columns = [];
+
+  for (let key in data[0]) {
+    let columnItem = {
+      Header: formatColumnHeader(key),
+      accessor: key
+    }
+    columns.push(columnItem);
+  }
+
+  return columns;
 }
