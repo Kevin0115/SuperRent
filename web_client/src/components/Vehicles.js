@@ -169,11 +169,19 @@ class Vehicles extends React.Component {
       if (json.success) {
         this.setState({
           alertTitle: 'All Done!',
-          alertMessage: 'Your reservation has been successfully created! Confirmation #',
+          alertMessage: (
+            <div className="message">
+              <h5>Your reservation has been successfully created!</h5>
+              <p>Your Confirmation Number is #{json.content.conf_no}</p>
+              <p>Start Date: {json.content.from_date} at {json.content.from_time}</p>
+              <p>End Date: {json.content.to_date} at {json.content.to_time}</p>
+              <p>Pick-up Branch: {json.content.branch_location} {json.content.branch_city}</p>
+              <p>*Please save this information, as you will need it on pick-up.*</p>
+            </div>
+          ),
           alertColor: 'success',
           showAlert: true,
           showModal: false,
-          confNo: json.content.conf_no,
         },
         this.getVehicles)
       } else {
@@ -186,7 +194,7 @@ class Vehicles extends React.Component {
           confNo: null,
         })
       }
-      setTimeout((() => this.setState({showAlert: false})), 10000);
+      setTimeout((() => this.setState({showAlert: false})), 20000);
     })
     .catch(function(error) {
       console.log(error);
@@ -224,7 +232,7 @@ class Vehicles extends React.Component {
       return(
         <Alert variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage} {this.state.confNo}</p>
+          {this.state.alertMessage}
         </Alert>
       );
     }

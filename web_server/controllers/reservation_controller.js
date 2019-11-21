@@ -232,6 +232,7 @@ exports.cancel_reservation = (req, res) => {
 
   connection.query(reservation_query)
   .then(result => {
+    console.log(result);
     if (result.rowCount < 1) {
       res.send({success: false, content: 'No reservation found for given Confirmation ID and Driver License #'});
     } else {
