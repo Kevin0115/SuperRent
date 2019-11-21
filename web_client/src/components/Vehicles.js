@@ -243,7 +243,7 @@ class Vehicles extends React.Component {
       <div className="vehicles">
         <h2>Browse Vehicles</h2>
         <VehicleFilters handler={this.filterCallback} />
-        <h2><Badge variant="secondary">Results Found: {this.state.vehicles.length}</Badge></h2>
+        <h2><Badge variant="info">Results Found: {this.state.vehicles.length}</Badge></h2>
         <div className="vehicle-list">
           {this.renderVehicles()}
         </div>

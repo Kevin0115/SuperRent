@@ -61,87 +61,87 @@ exports.create_return = (req, res) => {
 
       connection.query(complete_query)
       .then(result => {
+        // Start calculating the final price
+        const from_timestamp = moment(from_date + 'T' + from_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
+        let late_fee = 0;
+        let cost_struct;
+        if (moment(return_date).isAfter(to_date)) {
+          // They are late, so charge them a late fee of $50/day
+          const diff = moment(return_date).diff(moment(to_date), 'days');
+          late_fee = 50 * diff;
+        }
+        // Some calculation to find the minimum cost for our customers
+        const interval_hours = moment().diff(from_timestamp, 'hours');
+        const interval_days = interval_hours / 24;
+        const interval_weeks = interval_days / 7;
+        // We set the costs to MAX to ensure we take the minimum
+        // Unless they reach a whole number (hour, day, week) they are not eligble for that rate
+        // For example, if you rent for 0.5 weeks, you are not eligible for weekly rate
+        let hourly = Number.MAX_SAFE_INTEGER;
+        let daily = Number.MAX_SAFE_INTEGER;
+        let weekly = Number.MAX_SAFE_INTEGER;
+        if (interval_hours >= 1) {
+          hourly = interval_hours * hourly_rate;
+        }
+        if (interval_days >= 1) {
+          daily = interval_days * daily_rate;
+        }
+        if (interval_weeks >= 1) {
+          weekly = interval_weeks * weekly_rate;
+        }
+        const base_price = parseFloat(Math.min(hourly, daily, weekly)).toFixed(2);
+        const total_price = parseFloat(base_price + late_fee).toFixed(2);
+        // Prepare the cost structure so the customer knows how it was calculated.
+        switch (base_price) {
+          case (hourly):
+            cost_struct = {
+              rate_type: 'hourly',
+              rate: hourly_rate,
+              quantity: interval_hours,
+              base_price: base_price,
+              late_fee: late_fee,
+              total_price: total_price
+            }
+            break;
+          case (daily):
+            cost_struct = {
+              rate_type: 'daily',
+              rate: daily_rate,
+              quantity: interval_days,
+              base_price: base_price,
+              late_fee: late_fee,
+              total_price: total_price
+            }
+            break;
+          case (weekly):
+            cost_struct = {
+              rate_type: 'weekly',
+              rate: weekly_rate,
+              quantity: interval_weeks,
+              base_price: base_price,
+              late_fee: late_fee,
+              total_price: total_price
+            }
+            break;
+          default:
+            cost_struct = {
+              rate_type: 'hourly',
+              rate: hourly_rate,
+              quantity: interval_hours,
+              base_price: base_price,
+              late_fee: late_fee,
+              total_price: total_price
+            }
+        }
         // Now that the rental status is updated, process the return
         const return_query = {
           text: `insert into vehicle_return
-                  values ($1,$2,$3,$4,$5,$6,$7,$8)`,
-          values: [rid,return_date,return_time,odometer,fulltank,tank_value,branch_location,branch_city]
+                  values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
+          values: [rid,return_date,return_time,odometer,fulltank,tank_value,branch_location,branch_city,vlicense,total_price]
         }
 
         connection.query(return_query)
         .then(result => {
-          // Start calculating the final price
-          const from_timestamp = moment(from_date + 'T' + from_time, moment.HTML5_FMT.DATETIME_LOCAL_SECONDS);
-          let late_fee = 0;
-          let cost_struct;
-          if (moment(return_date).isAfter(to_date)) {
-            // They are late, so charge them a late fee of $50/day
-            const diff = moment(return_date).diff(moment(to_date), 'days');
-            late_fee = 50 * diff;
-          }
-          // Some calculation to find the minimum cost for our customers
-          const interval_hours = moment().diff(from_timestamp, 'hours');
-          const interval_days = interval_hours / 24;
-          const interval_weeks = interval_days / 7;
-          // We set the costs to MAX to ensure we take the minimum
-          // Unless they reach a whole number (hour, day, week) they are not eligble for that rate
-          // For example, if you rent for 0.5 weeks, you are not eligible for weekly rate
-          let hourly = Number.MAX_SAFE_INTEGER;
-          let daily = Number.MAX_SAFE_INTEGER;
-          let weekly = Number.MAX_SAFE_INTEGER;
-          if (interval_hours >= 1) {
-            hourly = interval_hours * hourly_rate;
-          }
-          if (interval_days >= 1) {
-            daily = interval_days * daily_rate;
-          }
-          if (interval_weeks >= 1) {
-            weekly = interval_weeks * weekly_rate;
-          }
-          const base_price = parseFloat(Math.min(hourly, daily, weekly)).toFixed(2);
-          const total_price = parseFloat(base_price + late_fee).toFixed(2);
-          // Prepare the cost structure so the customer knows how it was calculated.
-          switch (base_price) {
-            case (hourly):
-              cost_struct = {
-                rate_type: 'hourly',
-                rate: hourly_rate,
-                quantity: interval_hours,
-                base_price: base_price,
-                late_fee: late_fee,
-                total_price: total_price
-              }
-              break;
-            case (daily):
-              cost_struct = {
-                rate_type: 'daily',
-                rate: daily_rate,
-                quantity: interval_days,
-                base_price: base_price,
-                late_fee: late_fee,
-                total_price: total_price
-              }
-              break;
-            case (weekly):
-              cost_struct = {
-                rate_type: 'weekly',
-                rate: weekly_rate,
-                quantity: interval_weeks,
-                base_price: base_price,
-                late_fee: late_fee,
-                total_price: total_price
-              }
-              break;
-            default:
-              cost_struct = {
-                rate_type: 'hourly',
-                rate: hourly_rate,
-                quantity: interval_hours,
-                base_price: base_price,
-                late_fee: late_fee,
-                total_price: total_price
-              }
-          }
           // Finally, send the details back as response
           res.send({success: true,
             content: {

@@ -3,12 +3,10 @@ import {
   Button,
   Form,
   Alert,
-  Card,
-  Dropdown
 } from 'react-bootstrap';
 import './Clerk.css';
 
-import { formatDate, formatTime, noNullState, calculatePrice, formatDateTime } from '../utils/Utils';
+import { noNullState } from '../utils/Utils';
 import { API_BASE, POST } from '../utils/Const';
 
 class Return extends React.Component {

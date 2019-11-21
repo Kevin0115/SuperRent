@@ -36,6 +36,7 @@ export const formatColumnHeader = (header) => {
   }
   let first = header.toLowerCase().split('_')[0];
   let second = header.toLowerCase().split('_')[1];
+  second = (second == null) ? '' : second;
   
   return capitalizeWord(first) + ' ' + capitalizeWord(second);
 }
@@ -75,6 +76,9 @@ export const noNullState = (obj) => {
 }
 
 export const processColumns = (data) => {
+  if (data == null) {
+    return [];
+  }
   let columns = [];
 
   for (let key in data[0]) {
