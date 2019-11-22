@@ -214,7 +214,7 @@ exports.get_return_for_branch = async (req, res) => {
 
     //all returns for specified branch
     const all_returns_for_branch_query = {
-      text: `select r.branch_location, r.branch_city, v.vtname, r.rid, r.vlicense, r.return_date, r.return_time, r.price
+      text: `select r.branch_location, r.branch_city, v.vtname, r.rid, r.vlicense, r.return_date, r.return_time
             from vehicle_return r, vehicle v
             where r.vlicense = v.vlicense
             and r.return_date = $1::date
@@ -226,7 +226,7 @@ exports.get_return_for_branch = async (req, res) => {
 
     //number of returns for specified branch
     const all_returns_for_branch_count_query = {
-      text: `select count(*) as total_returns_today
+      text: `select count(*) as total_returns_today, sum(price) as branch_revenue_today
               from vehicle_return
               where return_date = $1::date
               and r.branch_location = $2
@@ -236,7 +236,7 @@ exports.get_return_for_branch = async (req, res) => {
 
     //returns for specified branch grouped (and counted) by vehicle category
     const returns_per_category_query = {
-      text: `select v.vtname, count(*) as quantity
+      text: `select v.vtname, count(*) as quantity, sum(r.price) as revenue
               from vehicle_return r, vehicle v
               where r.vlicense = v.vlicense
               and r.return_date = $1::date
