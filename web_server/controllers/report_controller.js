@@ -43,15 +43,19 @@ exports.get_rental = async (req, res) => {
     let total_rentals_result = await connection.query(total_rentals_count_query);
     let all_rentals_result = await connection.query(all_rentals_query);
   
-    res.send({
-      success: true,
-      content: {
-        total_rentals_count: total_rentals_result.rows,
-        rentals_per_branch: rentals_per_branch_result.rows,
-        rentals_per_category: rentals_per_category_result.rows,
-        all_rentals: all_rentals_result.rows
-      }
-    });
+    if(total_rentals_result.rows.length == 0) {
+      res.send({success: false, content: 'There is no data for selected report. No rentals occured today.'});
+    } else {
+      res.send({
+        success: true,
+        content: {
+          total_rentals_count: total_rentals_result.rows,
+          rentals_per_branch: rentals_per_branch_result.rows,
+          rentals_per_category: rentals_per_category_result.rows,
+          all_rentals: all_rentals_result.rows
+        }
+      });
+    }
   }
   catch(err){
     res.send({success: false, content: err.detail});
@@ -174,15 +178,19 @@ exports.get_return = async (req, res) => {
     let total_returns_result = await connection.query(total_returns_count_query);
     let all_returns_result = await connection.query(all_returns_query);
   
-    res.send({
-      success: true,
-      content: {
-        total_returns_count: total_returns_result.rows,
-        returns_per_branch: returns_per_branch_result.rows,
-        returns_per_category: returns_per_category_result.rows,
-        all_returns: all_returns_result.rows
-      }
-    });
+    if(total_rentals_result.rows.length == 0) {
+      res.send({success: false, content: 'There is no data for selected report. No returns occured today.'});
+    } else {
+      res.send({
+        success: true,
+        content: {
+          total_returns_count: total_returns_result.rows,
+          returns_per_branch: returns_per_branch_result.rows,
+          returns_per_category: returns_per_category_result.rows,
+          all_returns: all_returns_result.rows
+        }
+      });
+    }
   }
   catch(err){
     res.send({success: false, content: err.detail});
