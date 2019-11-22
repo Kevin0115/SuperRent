@@ -18,6 +18,7 @@ class Console extends React.Component {
     this.handleResetDatabase = this.handleResetDatabase.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleDeleteRs = this.handleDeleteRs.bind(this);
   }
 
   handleCloseModal() {
@@ -46,6 +47,21 @@ class Console extends React.Component {
     })
   }
 
+  handleDeleteRs() {
+    fetch(API_BASE + 'admin/r', {
+      method: DELETE,
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+      this.handleCloseModal();
+      this.alert();
+    })
+    .catch(function(error) {
+      console.log('Error posting session: ' + error);
+    })
+  }
+
   alert() {
     this.setState({showAlert: true});
     setTimeout((() => this.setState({showAlert: false})), 3000);
@@ -60,13 +76,16 @@ class Console extends React.Component {
           <Modal.Header closeButton>
             <Modal.Title>Reset Database</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Are you sure you want to proceed?</Modal.Body>
+          <Modal.Body>Select the Type of Reset</Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleCloseModal}>
               Cancel
             </Button>
+            <Button variant="danger" onClick={this.handleDeleteRs}>
+              Reservations/Rentals
+            </Button>
             <Button variant="danger" onClick={this.handleResetDatabase}>
-              YEET
+              Reset Database
             </Button>
           </Modal.Footer>
         </Modal>

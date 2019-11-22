@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap';
 import './Clerk.css';
 
-import { noNullState } from '../utils/Utils';
+import { noNullState, formatDate, formatTime, capitalizeWord } from '../utils/Utils';
 import { API_BASE, POST } from '../utils/Const';
 
 class Return extends React.Component {
@@ -65,20 +65,37 @@ class Return extends React.Component {
   alert(success, content) {
     if (success) {
       this.setState({
+        alertTitle: 'All Done!',
+        alertMessage: (
+          <div className="message">
+            <b>Your return has been successfully processed!</b>
+            <p>Your Rental ID is #{content.rid}</p>
+            <p>Return Date: {formatDate(content.to_date)} at {formatTime(content.to_time)}</p>
+            {/* <p>Returned at Branch: {content.branch_location} {content.branch_city}</p> */}
+            <h5>Cost Breakdown:</h5>
+            <p>Rate Type: {capitalizeWord(content.cost_struct.rate_type)}</p>
+            <p>{capitalizeWord(content.cost_struct.rate_type)}: ${content.cost_struct.rate}</p>
+            <p>Quantity: {content.cost_struct.quantity}</p>
+            <p>Base Price: ${content.cost_struct.rate} x {content.cost_struct.quantity} = ${content.cost_struct.base_price}</p>
+            <p>Late Fees: ${content.cost_struct.late_fee}</p>
+            <p>Total Price: ${content.cost_struct.total_price}</p>
+            <b>*Please save this information*</b>
+          </div>
+        ),
+        alertColor: 'success',
         showAlert: true,
-        alertTitle: 'Success!',
-        alertMessage: 'Your final price is $' + content.cost_struct.total_price,
-        alertColor: 'success'
-      });
+      })
     } else {
       this.setState({
-        showAlert: true,
-        alertTitle: 'Error',
+        alertTitle: 'Something went wrong.',
         alertMessage: content,
-        alertColor: 'danger'
-      });
+        alertColor: 'danger',
+        showAlert: true,
+        showModal: false,
+        confNo: null,
+      })
     }
-    setTimeout((() => this.setState({showAlert: false})), 10000);
+    setTimeout((() => this.setState({showAlert: false})), 120000);
   }
 
   clearForm() {
@@ -138,7 +155,7 @@ class Return extends React.Component {
         </form>
         <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage}</p>
+          {this.state.alertMessage}
         </Alert>
       </div>
     );
