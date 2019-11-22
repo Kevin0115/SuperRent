@@ -62,7 +62,7 @@ exports.get_rental = async (req, res) => {
   }
 }
 
-exports.get_rental_for_branch = (req, res) => {
+exports.get_rental_for_branch = async (req, res) => {
   try {
     const branch_l = req.params.branch_location;
     const branch_c = req.params.branch_city;
@@ -197,7 +197,7 @@ exports.get_return = async (req, res) => {
   }
 }
 
-exports.get_return_for_branch = (req, res) => {
+exports.get_return_for_branch = async (req, res) => {
   try {
     const branch_l = req.params.branch_location;
     const branch_c = req.params.branch_city;
