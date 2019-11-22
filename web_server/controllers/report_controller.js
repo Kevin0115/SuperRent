@@ -120,9 +120,9 @@ exports.get_rental_for_branch = (req, res) => {
       res.send({
         success: true,
         content: {
-          total_rentals_for_branch: all_rentals_for_branch_result.rows,
-          total_rentals_for_branch_count: all_rentals_for_branch_count_result.rows,
-          rentals_per_category: rentals_per_category_result.rows,
+          all_rentals_for_branch: all_rentals_for_branch_result.rows,
+          all_rentals_for_branch_count: all_rentals_for_branch_count_result.rows,
+          rentals_per_category_for_branch: rentals_per_category_result.rows,
         }
       });
     }
@@ -251,9 +251,9 @@ exports.get_return_for_branch = (req, res) => {
       res.send({
         success: true,
         content: {
-          total_returns_for_branch: all_returns_for_branch_result.rows,
-          total_returns_for_branch_count: all_returns_for_branch_count_result.rows,
-          returns_per_category: returns_per_category_result.rows,
+          all_returns_for_branch: all_returns_for_branch_result.rows,
+          all_returns_for_branch_count: all_returns_for_branch_count_result.rows,
+          returns_per_category_for_branch: returns_per_category_result.rows,
         }
       });
     }
