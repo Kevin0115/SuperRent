@@ -80,13 +80,13 @@ exports.get_rental_for_branch = async (req, res) => {
     //all rentals for specified branch
     const all_rentals_for_branch_query = {
       text: `select r.branch_location, r.branch_city, v.vtname, r.rid, r.vlicense, r.dlicense, r.from_date, r.from_time, r.to_date, r.to_time
-            from rental r, vehicle v
-            where r.vlicense = v.vlicense
-            and r.from_date = $1::date
-            and r.branch_location = $2
-            and r.branch_city = $3
-            order by v.vtname`,
-    values: [day, branch_l, branch_c]
+              from rental r, vehicle v
+              where r.vlicense = v.vlicense
+              and r.from_date = $1::date
+              and r.branch_location = $2
+              and r.branch_city = $3
+              order by v.vtname`,
+      values: [day, branch_l, branch_c]
     }
 
     //number of rentals for specified branch
@@ -124,9 +124,9 @@ exports.get_rental_for_branch = async (req, res) => {
       res.send({
         success: true,
         content: {
-          all_rentals_for_branch: all_rentals_for_branch_result.rows,
-          all_rentals_for_branch_count: all_rentals_for_branch_count_result.rows,
-          rentals_per_category_for_branch: rentals_per_category_result.rows,
+          branch_all_rentals: all_rentals_for_branch_result.rows,
+          branch_total_rentals_count: all_rentals_for_branch_count_result.rows,
+          branch_rentals_per_category: rentals_per_category_result.rows,
         }
       });
     }
@@ -206,22 +206,22 @@ exports.get_return_for_branch = async (req, res) => {
     //check for branch existence
     const branch_exists_query = {
       text: `select *
-            from branch
-            where branch_location like $1
-            and branch_city like $2`,
+              from branch
+              where branch_location like $1
+              and branch_city like $2`,
       values: [branch_l, branch_c]
     }
 
     //all returns for specified branch
     const all_returns_for_branch_query = {
       text: `select r.branch_location, r.branch_city, v.vtname, r.rid, r.vlicense, r.return_date, r.return_time
-            from vehicle_return r, vehicle v
-            where r.vlicense = v.vlicense
-            and r.return_date = $1::date
-            and r.branch_location = $2
-            and r.branch_city = $3
-            order by v.vtname`,
-    values: [day, branch_l, branch_c]
+              from vehicle_return r, vehicle v
+              where r.vlicense = v.vlicense
+              and r.return_date = $1::date
+              and r.branch_location = $2
+              and r.branch_city = $3
+              order by v.vtname`,
+      values: [day, branch_l, branch_c]
     }
 
     //number of returns for specified branch
@@ -259,9 +259,9 @@ exports.get_return_for_branch = async (req, res) => {
       res.send({
         success: true,
         content: {
-          all_returns_for_branch: all_returns_for_branch_result.rows,
-          all_returns_for_branch_count: all_returns_for_branch_count_result.rows,
-          returns_per_category_for_branch: returns_per_category_result.rows,
+          branch_all_returns: all_returns_for_branch_result.rows,
+          branch_total_returns_count: all_returns_for_branch_count_result.rows,
+          branch_returns_per_category: returns_per_category_result.rows,
         }
       });
     }

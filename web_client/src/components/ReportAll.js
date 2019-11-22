@@ -122,14 +122,14 @@ class ReportAll extends React.Component {
                   columns={processColumns(allReturns)}
                   data={allReturns == null ? [] : allReturns}
                 />
-                <h5>Rentals by Branch</h5>
+                <h5>Returns by Branch</h5>
                 <ReactTable
                   className="table"
                   defaultPageSize={6}
                   columns={processColumns(returnsPerBranch)}
                   data={returnsPerBranch == null ? [] : returnsPerBranch}
                 />
-                <h5>Rentals by Category</h5>
+                <h5>Returns by Category</h5>
                 <ReactTable
                   className="table"
                   defaultPageSize={10}
