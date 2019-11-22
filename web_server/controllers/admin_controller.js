@@ -377,7 +377,7 @@ exports.reset_database = (req, res) => {
   })
 }
 
-exports.delete_r = (req, res) => {
+exports.delete_r = async (req, res) => {
   const query_1 = {
     text: `delete from reservation where true;`
   }
