@@ -17,8 +17,8 @@ class ReportBranch extends React.Component {
     super(props);
     this.state = {
       // Branch Specs
-      branchLocation: null,
-      branchCity: null,
+      branchLocation: 'Downtown',
+      branchCity: 'Vancouver',
       // Received Content
       rentalsPerBranch: null,
       rentalsPerCategory: null,
@@ -30,6 +30,10 @@ class ReportBranch extends React.Component {
       returnsTotalRevenue: null,
       allReturns: null,
     }
+  }
+
+  componentDidMount() {
+    this.getBranchReports();
   }
 
   getBranchReports() {

@@ -49,7 +49,6 @@ class ReportAll extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json);
       this.setState({
         returnsPerBranch: json.content.returns_per_branch,
         returnsPerCategory: json.content.returns_per_category,

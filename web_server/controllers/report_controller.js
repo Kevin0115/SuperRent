@@ -58,6 +58,7 @@ exports.get_rental = async (req, res) => {
     }
   }
   catch(err){
+    console.log(err);
     res.send({success: false, content: err.detail});
   }
 }
@@ -94,8 +95,8 @@ exports.get_rental_for_branch = async (req, res) => {
       text: `select count(*) as total_rentals_today
               from rental
               where from_date = $1::date
-              and r.branch_location = $2
-              and r.branch_city = $3`,
+              and branch_location = $2
+              and branch_city = $3`,
       values: [day, branch_l, branch_c]
     }
 
@@ -132,6 +133,7 @@ exports.get_rental_for_branch = async (req, res) => {
     }
   }
   catch(err) {
+    console.log(err);
     res.send({success: false, content: err.detail});
   }
 }
@@ -230,8 +232,8 @@ exports.get_return_for_branch = async (req, res) => {
       text: `select count(*) as total_returns_today, sum(price) as branch_revenue_today
               from vehicle_return
               where return_date = $1::date
-              and r.branch_location = $2
-              and r.branch_city = $3`,
+              and branch_location = $2
+              and branch_city = $3`,
       values: [day, branch_l, branch_c]
     }
 
@@ -268,6 +270,7 @@ exports.get_return_for_branch = async (req, res) => {
     }
   }
   catch(err) {
+    console.log(err);
     res.send({success: false, content: err.detail});
   }
 }
