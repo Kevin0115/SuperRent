@@ -35,7 +35,7 @@ class Reservation extends React.Component {
     this.handlePickerChange = this.handlePickerChange.bind(this);
     this.updateVtname = this.updateVtname.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.alert = this.alert.bind(this);
+    this.alert = this.alert.bind(this);
   }
 
   handleChange(e) {
@@ -86,35 +86,7 @@ class Reservation extends React.Component {
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json);
-      if (json.success) {
-        this.setState({
-          alertTitle: 'All Done!',
-          alertMessage: (
-            <div className="message">
-              <h5>Your reservation has been successfully created!</h5>
-              <p>Your Confirmation Number is #{json.content.conf_no}</p>
-              <p>Start Date: {json.content.from_date} at {json.content.from_time}</p>
-              <p>End Date: {json.content.to_date} at {json.content.to_time}</p>
-              <p>Pick-up Branch: {json.content.branch_location} {json.content.branch_city}</p>
-              <p>*Please save this information, as you will need it on pick-up.*</p>
-            </div>
-          ),
-          alertColor: 'success',
-          showAlert: true,
-        })
-      } else {
-        this.setState({
-          alertTitle: 'Something went wrong.',
-          alertMessage: json.content,
-          alertColor: 'danger',
-          showAlert: true,
-          showModal: false,
-          confNo: null,
-        })
-      }
-      setTimeout((() => this.setState({showAlert: false})), 20000);
-      // this.alert(json.success, json.content);
+      this.alert(json.success, json.content);
       this.clearForm();
     })
     .catch(function(error) {
@@ -123,28 +95,35 @@ class Reservation extends React.Component {
     })
   }
 
-  // alert(success, content) {
-  //   const { fromDate, fromTime, toDate, toTime } = this.state;
-  //   if (success) {
-  //     this.setState({
-  //       showAlert: true,
-  //       alertTitle: 'All Done!',
-  //       alertMessage: 'Your reservation has been successfully created! Confirmation # '
-  //                       + content.conf_no + '\n Estimated Price: $'
-  //                       + calculatePrice(formatDateTime(fromDate, fromTime), formatDateTime(toDate, toTime), content.rate.hourly, content.rate.daily, content.rate.weekly),
-  //       alertColor: 'success',
-  //       confNo: content.conf_no,
-  //     });
-  //   } else {
-  //     this.setState({
-  //       showAlert: true,
-  //       alertTitle: 'Sorry...',
-  //       alertMessage: content,
-  //       alertColor: 'danger'
-  //     });
-  //   }
-  //   setTimeout((() => this.setState({showAlert: false})), 10000);
-  // }
+  alert(success, content) {
+    if (success) {
+      this.setState({
+        alertTitle: 'All Done!',
+        alertMessage: (
+          <div className="message">
+            <b>Your reservation has been successfully created!</b>
+            <p>Your Confirmation Number is #{content.conf_no}</p>
+            <p>Start Date: {content.from_date} at {content.from_time}</p>
+            <p>End Date: {content.to_date} at {content.to_time}</p>
+            <p>Pick-up Branch: {content.branch_location} {content.branch_city}</p>
+            <b>*Please save this information, as you will need it on pick-up.*</b>
+          </div>
+        ),
+        alertColor: 'success',
+        showAlert: true,
+      })
+    } else {
+      this.setState({
+        alertTitle: 'Something went wrong.',
+        alertMessage: content,
+        alertColor: 'danger',
+        showAlert: true,
+        showModal: false,
+        confNo: null,
+      })
+    }
+    setTimeout((() => this.setState({showAlert: false})), 30000);
+  }
 
   clearForm() {
     this.setState({

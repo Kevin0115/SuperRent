@@ -171,12 +171,12 @@ class Vehicles extends React.Component {
           alertTitle: 'All Done!',
           alertMessage: (
             <div className="message">
-              <h5>Your reservation has been successfully created!</h5>
+              <b>Your reservation has been successfully created!</b>
               <p>Your Confirmation Number is #{json.content.conf_no}</p>
               <p>Start Date: {json.content.from_date} at {json.content.from_time}</p>
               <p>End Date: {json.content.to_date} at {json.content.to_time}</p>
               <p>Pick-up Branch: {json.content.branch_location} {json.content.branch_city}</p>
-              <p>*Please save this information, as you will need it on pick-up.*</p>
+              <b>*Please save this information, as you will need it on pick-up.*</b>
             </div>
           ),
           alertColor: 'success',
@@ -194,7 +194,7 @@ class Vehicles extends React.Component {
           confNo: null,
         })
       }
-      setTimeout((() => this.setState({showAlert: false})), 20000);
+      setTimeout((() => this.setState({showAlert: false})), 30000);
     })
     .catch(function(error) {
       console.log(error);

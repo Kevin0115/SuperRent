@@ -202,7 +202,7 @@ exports.create_rental_no_reservation = (req, res) => {
           // All clear to book rental
           const rental_query = {
             text: `insert into rental
-                  values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,null,$12,$13)`,
+                  values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,null,$12,$13,'active')`,
             values: [rid,vlicense,dlicense,from_date,from_time,to_date,to_time,
                       odometer,card_name,card_no,exp_date,branch_location,branch_city]
           }
