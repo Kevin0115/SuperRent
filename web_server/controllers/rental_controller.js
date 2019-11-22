@@ -47,6 +47,12 @@ exports.create_rental_with_reservation = (req, res) => {
       const branch_location = reservation.branch_location;
       const branch_city = reservation.branch_city;
 
+      // Quickly check that we're not starting rental before reservation from_date
+      if (moment().isBefore(moment(from_date), 'day')) {
+        res.send({success: false, content: 'Sorry, you cannot start your reserved rental before its start date'});
+        return;
+      }
+
       // Now that we've pulled the necessary reservation info, look for the odometer
       const odometer_query = {
         text: `select v.odometer

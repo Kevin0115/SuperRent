@@ -59,20 +59,33 @@ class RentalReservation extends React.Component {
   alert(success, content) {
     if (success) {
       this.setState({
+        alertTitle: 'All Done!',
+        alertMessage: (
+          <div className="message">
+            <b>Your rental has been successfully started!</b>
+            <p>Your Rental ID is #{content.rid}</p>
+            <p>Reservation Confirmation #{content.conf_no}</p>
+            <p>Your Vehicle Plate Number Is {content.vlicense}</p>
+            <p>Start Date: {content.from_date} at {content.from_time}</p>
+            <p>End Date: {content.to_date} at {content.to_time}</p>
+            <p>Pick-up Branch: {content.branch_location} {content.branch_city}</p>
+            <b>*Please save this information, as you will need it upon return.*</b>
+          </div>
+        ),
+        alertColor: 'success',
         showAlert: true,
-        alertTitle: 'Success!',
-        alertMessage: 'Rental Successfully Booked.',
-        alertColor: 'success'
-      });
+      })
     } else {
       this.setState({
-        showAlert: true,
-        alertTitle: 'Sorry...',
+        alertTitle: 'Something went wrong.',
         alertMessage: content,
-        alertColor: 'danger'
-      });
+        alertColor: 'danger',
+        showAlert: true,
+        showModal: false,
+        confNo: null,
+      })
     }
-    setTimeout((() => this.setState({showAlert: false})), 10000);
+    setTimeout((() => this.setState({showAlert: false})), 30000);
   }
 
   clearForm() {
@@ -117,7 +130,7 @@ class RentalReservation extends React.Component {
         </form>
         <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage}</p>
+          {this.state.alertMessage}
         </Alert>
       </div>
     );

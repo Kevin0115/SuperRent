@@ -204,7 +204,7 @@ class Reservation extends React.Component {
         </form>
         <Alert className="alert" show={this.state.showAlert} variant={this.state.alertColor} onClose={() => this.setState({showAlert: false})} dismissible>
           <Alert.Heading>{this.state.alertTitle}</Alert.Heading>
-          <p>{this.state.alertMessage}</p>
+          {this.state.alertMessage}
         </Alert>
       </div>
     );
