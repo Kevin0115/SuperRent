@@ -376,3 +376,23 @@ exports.reset_database = (req, res) => {
     res.send({success: false, content: err.detail});
   })
 }
+
+exports.delete_r = (req, res) => {
+  const query_1 = {
+    text: `delete from reservation where true;`
+  }
+
+  const query_2 = {
+    text: `delete from rental where true;`
+  }
+
+  const query_3 = {
+    text: `delete from vehicle_return where true;`
+  }
+
+  let res_3 = await connection.query(query_3);
+  let res_2 = await connection.query(query_2);
+  let res_1 = await connection.query(query_1);
+
+  res.send({success: true, content: 'All Reservations/Rentals/Returns Deleted.'})
+}
