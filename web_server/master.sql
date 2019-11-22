@@ -336,23 +336,23 @@ insert into rental values(8888887,294121,9999997,'2019-11-27','8:00:00','2019-12
 insert into rental values(8888888,195921,9999998,'2019-11-28','16:00:00','2019-12-02','12:00:00',200000,'Cherry Fulks',4781637900904780,'2025-09-10',9999998,'Downtown','Vancouver','active');
 insert into rental values(8888889,701740,9999999,'2019-11-23','12:00:00','2019-11-29','12:00:00',150000,'Johnnie Jerwood',6664990725230690,'2025-09-10',9999999,'Downtown','Vancouver','complete');
 
-insert into rental values(8888801,752963,9999910,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888802,696700,9999911,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888803,744097,9999912,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888804,195875,9999913,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888805,976051,9999914,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888806,365757,9999915,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888807,136841,9999916,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888808,303804,9999917,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888809,150743,9999918,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888810,949941,9999919,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
-insert into rental values(8888811,636018,9999920,'2019-11-21','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888801,752963,9999910,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888802,696700,9999911,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888803,744097,9999912,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888804,195875,9999913,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888805,976051,9999914,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888806,365757,9999915,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888807,136841,9999916,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888808,303804,9999917,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888809,150743,9999918,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888810,949941,9999919,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
+insert into rental values(8888811,636018,9999920,'2019-11-22','12:00:00','2019-11-30','12:00:00',150000,'John Smith',4520000088880000,'2025-02-02',null,'Midtown','Burnaby','active');
 
 
-insert into vehicle_return values(8888884,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',323642,200.99);
-insert into vehicle_return values(8888881,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',401853,300.99);
-insert into vehicle_return values(8888882,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',395267,420.99);
-insert into vehicle_return values(8888883,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',977841,230.99);
-insert into vehicle_return values(8888887,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',294121,150.99);
-insert into vehicle_return values(8888885,'2019-11-21','12:00:00',35550,true,50,'Downtown','Vancouver',134772,100.99);
+insert into vehicle_return values(8888884,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',323642,200.99);
+insert into vehicle_return values(8888881,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',401853,300.99);
+insert into vehicle_return values(8888882,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',395267,420.99);
+insert into vehicle_return values(8888883,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',977841,230.99);
+insert into vehicle_return values(8888887,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',294121,150.99);
+insert into vehicle_return values(8888885,'2019-11-22','12:00:00',35550,true,50,'Downtown','Vancouver',134772,100.99);
 insert into vehicle_return values(8888886,'2019-11-30','12:00:00',35550,true,50,'Downtown','Vancouver',485830,250.99);
