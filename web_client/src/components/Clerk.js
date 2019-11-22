@@ -10,6 +10,7 @@ import RentalNoReservation from './RentalNoReservation';
 import Return from './Return';
 import Console from './Console';
 import ReportAll from './ReportAll';
+import ReportBranch from './ReportBranch';
 
 class Clerk extends React.Component {
   render() {
@@ -29,7 +30,7 @@ class Clerk extends React.Component {
             <ReportAll />
           </Tab>
           <Tab eventKey="report-branch" title="Reports (Branch)">
-            <ReportAll />
+            <ReportBranch />
           </Tab>
           <Tab eventKey="console" title="Console">
             <Console />

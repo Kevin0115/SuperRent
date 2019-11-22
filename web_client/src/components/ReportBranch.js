@@ -12,10 +12,14 @@ import moment from 'moment';
 import { API_BASE, GET } from '../utils/Const';
 import { processColumns } from '../utils/Utils';
 
-class ReportAll extends React.Component {
+class ReportBranch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // Branch Specs
+      branchLocation: null,
+      branchCity: null,
+      // Received Content
       rentalsPerBranch: null,
       rentalsPerCategory: null,
       rentalsTotalCount: null,
@@ -28,34 +32,32 @@ class ReportAll extends React.Component {
     }
   }
 
-  componentDidMount() {
-    fetch(API_BASE + 'report/rental', {
+  getBranchReports() {
+    const { branchLocation, branchCity } = this.state;
+    fetch(API_BASE + 'report/rental/' + branchCity + '/' + branchLocation, {
       method: GET,
     })
     .then(res => res.json())
     .then(json => {
       this.setState({
-        rentalsPerBranch: json.content.rentals_per_branch,
-        rentalsPerCategory: json.content.rentals_per_category,
-        rentalsTotalCount: json.content.total_rentals_count[0].total_rentals_today,
-        allRentals: json.content.all_rentals
+        rentalsPerCategory: json.content.branch_rentals_per_category,
+        rentalsTotalCount: json.content.branch_total_rentals_count[0].total_rentals_today,
+        allRentals: json.content.branch_all_rentals
       })
     })
     .catch(function(error) {
       console.log(error);
     })
-    fetch(API_BASE + 'report/return', {
+    fetch(API_BASE + 'report/return/' + branchCity + '/' + branchLocation, {
       method: GET,
     })
     .then(res => res.json())
     .then(json => {
-      console.log(json);
       this.setState({
-        returnsPerBranch: json.content.returns_per_branch,
-        returnsPerCategory: json.content.returns_per_category,
-        returnsTotalCount: json.content.total_returns_count[0].total_returns_today,
-        returnsTotalRevenue: json.content.total_returns_count[0].total_revenue_today,
-        allReturns: json.content.all_returns
+        returnsPerCategory: json.content.branch_returns_per_category,
+        returnsTotalCount: json.content.branch_total_returns_count[0].total_returns_today,
+        returnsTotalRevenue: json.content.branch_total_returns_count[0].total_revenue_today,
+        allReturns: json.content.branch_all_returns
       })
     })
     .catch(function(error) {
@@ -64,8 +66,8 @@ class ReportAll extends React.Component {
   }
 
   render() {
-    const { rentalsPerBranch, rentalsPerCategory, rentalsTotalCount, allRentals,
-            returnsPerBranch, returnsPerCategory, returnsTotalCount, allReturns, returnsTotalRevenue } = this.state;
+    const { rentalsPerCategory, rentalsTotalCount, allRentals,
+            returnsPerCategory, returnsTotalCount, allReturns, returnsTotalRevenue } = this.state;
     return (
       <div className="report">
         <h2>Rental and Return Reports for All Branches</h2>
@@ -91,13 +93,13 @@ class ReportAll extends React.Component {
                   columns={processColumns(allRentals)}
                   data={allRentals == null ? [] : allRentals}
                 />
-                <h5>Rentals by Branch</h5>
+                {/* <h5>Rentals by Branch</h5>
                 <ReactTable
                   className="table"
                   defaultPageSize={6}
                   columns={processColumns(rentalsPerBranch)}
                   data={rentalsPerBranch == null ? [] : rentalsPerBranch}
-                />
+                /> */}
                 <h5>Rentals by Category</h5>
                 <ReactTable
                   className="table"
@@ -123,13 +125,13 @@ class ReportAll extends React.Component {
                   columns={processColumns(allReturns)}
                   data={allReturns == null ? [] : allReturns}
                 />
-                <h5>Returns by Branch</h5>
+                {/* <h5>Returns by Branch</h5>
                 <ReactTable
                   className="table"
                   defaultPageSize={6}
                   columns={processColumns(returnsPerBranch)}
                   data={returnsPerBranch == null ? [] : returnsPerBranch}
-                />
+                /> */}
                 <h5>Returns by Category</h5>
                 <ReactTable
                   className="table"
@@ -146,4 +148,4 @@ class ReportAll extends React.Component {
   }
 }
 
-export default ReportAll;
+export default ReportBranch;

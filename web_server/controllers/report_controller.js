@@ -178,7 +178,7 @@ exports.get_return = async (req, res) => {
     let total_returns_result = await connection.query(total_returns_count_query);
     let all_returns_result = await connection.query(all_returns_query);
   
-    if(total_rentals_result.rows.length == 0) {
+    if(total_returns_result.rows.length == 0) {
       res.send({success: false, content: 'There is no data for selected report. No returns occured today.'});
     } else {
       res.send({
@@ -193,6 +193,7 @@ exports.get_return = async (req, res) => {
     }
   }
   catch(err){
+    console.log(err);
     res.send({success: false, content: err.detail});
   }
 }
