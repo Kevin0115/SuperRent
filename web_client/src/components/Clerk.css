@@ -6,6 +6,10 @@
   margin: 16px;
 }
 
+.console {
+  height: 69vh;
+}
+
 .form {
   width: 400px;
   margin: 24px 0;
