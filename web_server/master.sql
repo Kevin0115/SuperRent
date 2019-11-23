@@ -302,6 +302,26 @@ insert into customer values (9999926,3856771318,'Cornell Jermy','2823 Artisan Wa
 insert into customer values (9999927,6958672178,'Danika Biskupski','510 Grover Trail');
 insert into customer values (9999928,9652959722,'Chilton Ridge','587 Service Circle');
 insert into customer values (9999929,5946500687,'Philomena Pardy','71419 Dryden Circle');
+insert into customer values (9999930,9594796563,'Kaylan Lucero','0728 Messerschmidt Center');
+insert into customer values (9999931,3209080882,'Harriette Kennedy','024 Derek Junction');
+insert into customer values (9999932,3421657450,'Rea Keller','8939 Wayridge Boulevard');
+insert into customer values (9999933,4323338858,'Dante Mcphee','50818 Menomonie Alley');
+insert into customer values (9999934,8611908388,'Inayah Britton','832 Veith Alley');
+insert into customer values (9999935,2415899453,'Letitia Ventura','76 Bluejay Avenue');
+insert into customer values (9999936,3856771318,'Braydon Welsh','4537 Artisan Way');
+insert into customer values (9999937,6958672178,'Robert Skinner','640 Grover Trail');
+insert into customer values (9999938,9652959722,'Toni Rigby','237 Service Circle');
+insert into customer values (9999939,5946500687,'Carla Hooper','71362 Dryden Circle');
+insert into customer values (9999940,1211420847,'Shanae Brown','462 David Road');
+insert into customer values (9999941,4059058071,'Jamel Wharton','431 Yukon Crossing');
+insert into customer values (9999942,4783456807,'Fahmida Whiteley','34 Delfino Plaza');
+insert into customer values (9999943,9273666685,'Joe Thomson','485 Rainbow Road');
+insert into customer values (9999944,4355470141,'Shanice Bailey','637 Luigi Mansion');
+insert into customer values (9999945,8646549733,'Shiv Hogan','1800 Pompano Drive');
+insert into customer values (9999946,5667267557,'Emir Hess','1835 Blackwater Hill');
+insert into customer values (9999947,2379241567,'Dominika Whittington','921 Armadillo Place');
+insert into customer values (9999948,3013434956,'Roscoe Snider','8674 Pikachu Palace');
+insert into customer values (9999949,7757365180,'Raveena Ross','428 Napoleon Park');
 
 -- insert into reservation values(999,802694,'fullsize_gas',5772223,'2019-11-15','00:00:00','2019-11-18','00:00:00','Midtown','Burnaby');
 insert into reservation values(9999990,285834,'economy_electric',9999990,'2019-11-25','12:00:00','2019-12-12','12:00:00','Downtown','Vancouver');
