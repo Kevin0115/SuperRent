@@ -1,13 +1,9 @@
 # SuperRent
 ### CPSC 304 Project (Team 11)
 
-## PostgreSQL Instructions
-1. Go to `https://customer.elephantsql.com/`
-2. Sign in with GitHub account
-3. Make a free database instance
-4. Make note of the `URL` - this will be used in the next section
-5. Go to the **Browser** section of your DB instance
-6. Run any SQL commands to create/populate tables
+## Find the Deployed Version at:
+### www.kevinchoi.dev/SuperRent
+
 
 ## Startup Instructions (Server)
 1. Open up Git Bash in desired directory
@@ -25,3 +21,12 @@
 2. Run `cd SuperRent/web_client`
 3. Run `npm start`
 7. Open `http://localhost:3000`
+
+
+## PostgreSQL Instructions (Not Necessary)
+1. Go to `https://customer.elephantsql.com/`
+2. Sign in with GitHub account
+3. Make a free database instance
+4. Make note of the `URL` - this will be used in the next section
+5. Go to the **Browser** section of your DB instance
+6. Run any SQL commands to create/populate tables
