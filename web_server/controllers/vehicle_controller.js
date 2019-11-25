@@ -29,7 +29,7 @@ exports.get_vehicles_by_param = (req, res) => {
   console.log(moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD'));
 
   // Check we are not viewing vehicles in the past - we allow from only today onwards
-  if (moment(from_date).isBefore(moment().utcOffset(UTC_PST_OFFSET), 'day')) {
+  if (moment(from_date).add(1, 'd').isBefore(moment().utcOffset(UTC_PST_OFFSET), 'day')) {
     res.send({success: false, content: 'Sorry, you cannot enter a time in the past as a starting period!'});
     return; // Nothing left to do here.
   }
