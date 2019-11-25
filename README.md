@@ -1,10 +1,18 @@
 # SuperRent
 ### CPSC 304 Project (Team 11)
 
-## Find the Deployed Version at:
+## Message to TAs:
+Some notes:
+- The deployed web client is hosted on GitHub Pages; find the link below
+- The production server is hosted on an AWS EC2 instance
+- The initialization SQL script is found in `web_server/master.sql`
+- All SQL queries relevant to the assignment rubric are found in `web_server/controllers/` embedded in the Node.js code
+
+## Find the Deployed Website at:
 ### www.kevinchoi.dev/SuperRent
 
 
+# Developer-Only:
 ## Startup Instructions (Server)
 1. Open up Git Bash in desired directory
 2. Run `git clone https://github.com/Kevin0115/SuperRent.git`
