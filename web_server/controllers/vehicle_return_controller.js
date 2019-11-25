@@ -1,6 +1,8 @@
 const connection = require('../config/db_config');
 var moment = require('moment');
 
+const UTC_PST_OFFSET = -8;
+
 exports.create_return = (req, res) => {
   const rid = req.body.rid;
   const vlicense = req.body.vlicense; // Used to check this is the right vehicle for the rental ID
@@ -11,8 +13,8 @@ exports.create_return = (req, res) => {
   const branch_city = req.body.branch_city;
   const dlicense = req.body.dlicense;
   // Instantiate return date and time
-  const return_date = moment().format('YYYY-MM-DD');
-  const return_time = moment().format('hh:mm:ss');
+  const return_date = moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD');
+  const return_time = moment().utcOffset(UTC_PST_OFFSET).format('hh:mm:ss');
 
   // Nest three queries; check rid exists; check correct vehicle for rid; then complete the return
   // We need to join rental, vehicle, and vehicle_type in order to retrieve the rates for calculation later
@@ -71,7 +73,7 @@ exports.create_return = (req, res) => {
           late_fee = 50 * diff;
         }
         // Some calculation to find the minimum cost for our customers
-        const interval_hours = moment().diff(from_timestamp, 'hours');
+        const interval_hours = moment().utcOffset(UTC_PST_OFFSET).diff(from_timestamp, 'hours');
         const interval_days = interval_hours / 24;
         const interval_weeks = interval_days / 7;
         // We set the costs to MAX to ensure we take the minimum
@@ -148,7 +150,7 @@ exports.create_return = (req, res) => {
               rid: rid,
               cost_struct: cost_struct,
               from_datetime: from_timestamp,
-              return_datetime: moment(),
+              return_datetime: moment().utcOffset(UTC_PST_OFFSET),
             }
           })
         })

@@ -3,6 +3,7 @@ var moment = require('moment');
 
 const MINUTES_IN_HOUR = 3600;
 const MINUTES_IN_WEEK = 2419200;
+const UTC_PST_OFFSET = -8;
 
 exports.create_reservation = async (req, res) => {
   // Ensure no conf_no collision
@@ -23,7 +24,7 @@ exports.create_reservation = async (req, res) => {
     return; // Nothing more to do here.
   }
   // Validate that the starting time for the reservation is not before today
-  if (moment(from_date).isBefore(moment(), 'day')) {
+  if (moment(from_date).isBefore(moment().utcOffset(UTC_PST_OFFSET), 'day')) {
     res.send({success: false, content: 'Sorry, you cannot book a reservation in the past'});
     return; // Nothing left to do here.
   }

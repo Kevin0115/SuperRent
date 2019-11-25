@@ -1,9 +1,11 @@
 const connection = require('../config/db_config');
 var moment = require('moment');
 
+const UTC_PST_OFFSET = -8;
+
 exports.get_rental = async (req, res) => {
   try {
-    const day = moment().format('YYYY-MM-DD');
+    const day = moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD');
   
     const rentals_per_category_query = {
       text: `select v.vtname, count(*) as quantity
@@ -67,7 +69,7 @@ exports.get_rental_for_branch = async (req, res) => {
   try {
     const branch_l = req.params.branch_location;
     const branch_c = req.params.branch_city;
-    const day = moment().format('YYYY-MM-DD');
+    const day = moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD');
 
     //check for branch existence
      const branch_exists_query = {
@@ -140,7 +142,7 @@ exports.get_rental_for_branch = async (req, res) => {
 
 exports.get_return = async (req, res) => {
   try {
-    const day = moment().format('YYYY-MM-DD');
+    const day = moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD');
   
     const returns_per_category_query = {
       text: `select v.vtname, count(*) as quantity, sum(r.price) as revenue
@@ -204,7 +206,7 @@ exports.get_return_for_branch = async (req, res) => {
   try {
     const branch_l = req.params.branch_location;
     const branch_c = req.params.branch_city;
-    const day = moment().format('YYYY-MM-DD');
+    const day = moment().utcOffset(UTC_PST_OFFSET).format('YYYY-MM-DD');
 
     //check for branch existence
     const branch_exists_query = {
