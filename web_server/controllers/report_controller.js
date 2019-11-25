@@ -42,6 +42,8 @@ exports.get_rental = async (req, res) => {
     let rentals_per_category_result = await connection.query(rentals_per_category_query);
     let total_rentals_result = await connection.query(total_rentals_count_query);
     let all_rentals_result = await connection.query(all_rentals_query);
+
+    console.log(all_rentals_result.rows);
   
     if(total_rentals_result.rows.length == 0) {
       res.send({success: false, content: 'There is no data for selected report. No rentals occured today.'});
