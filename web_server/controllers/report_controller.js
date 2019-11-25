@@ -3,8 +3,7 @@ var moment = require('moment');
 
 exports.get_rental = async (req, res) => {
   try {
-    // const day = moment().format('YYYY-MM-DD');
-    const day = '2019-11-25';
+    const day = moment().format('YYYY-MM-DD');
   
     const rentals_per_category_query = {
       text: `select v.vtname, count(*) as quantity
